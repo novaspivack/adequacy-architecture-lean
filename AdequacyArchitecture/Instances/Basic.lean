@@ -1,0 +1,4 @@
+import AdequacyArchitecture.Instances.NEMS
+import AdequacyArchitecture.Instances.APS
+import AdequacyArchitecture.Instances.InfinityCompression
+import AdequacyArchitecture.Instances.WhatMapsForget

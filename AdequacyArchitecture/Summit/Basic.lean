@@ -1,0 +1,2 @@
+import AdequacyArchitecture.Summit.UniversalIrreducibleAdequacy
+import AdequacyArchitecture.Summit.UniversalBurdenRelocation
