@@ -6,6 +6,7 @@ import AdequacyArchitecture.Core.Basic
 import AdequacyArchitecture.Foundation.Basic
 import AdequacyArchitecture.Burden.Basic
 import AdequacyArchitecture.Toy.Fin2Model
+import AdequacyArchitecture.Lawful.Basic
 import AdequacyArchitecture.Residual.Basic
 import AdequacyArchitecture.LocalGlobal.Basic
 import AdequacyArchitecture.Dynamics.Basic

@@ -20,8 +20,8 @@
 | `AdequacyArchitecture/Adjudication/*` | E3–E4 scaffold |
 | `AdequacyArchitecture/Route/*` | F-track scaffold |
 | `AdequacyArchitecture/Finality/*` | G-track scaffold |
-| `AdequacyArchitecture/Summit/*` | S1–S2 conjecture `def`s (open) |
-| `AdequacyArchitecture/Instances/*` | External corpus hooks — TODO `lakefile` `require` |
+| `AdequacyArchitecture/Summit/*` | S1–S2 conjecture `def`s (open); **`SummitEngine`** (`SPEC_020`) |
+| `AdequacyArchitecture/Instances/*` | Strata `require` — `Fin 2` corridor (`CorpusDischarge`, embedding + injective), lawful link, lawful representation, **SPEC_013 Phase C** (`CorpusPhaseC`), **LinkedArchitecture** (`LinkedLayer` / cross-corpus `Unit`), faithful NEMS/IC/APS, APS uniformization (`APSIndexedFaithful`), cross-corpus (`FaithfulCorpusJoint`), **HonestyBridge** (Linked vs joint vs `Fin 2`), **UnifiedCarrierMorphisms** (**`SPEC_014_UC1`**) |
 
 ---
 

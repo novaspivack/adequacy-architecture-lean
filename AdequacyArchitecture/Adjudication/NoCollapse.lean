@@ -1,13 +1,16 @@
 /-
-  E4 — No total-effective adjudicative collapse (abstract; NEMS diagonal-capable fragment).
+  E4 — Adjudication does not collapse distinct cases: injective comparison (minimal exhaustion).
 -/
 
-import AdequacyArchitecture.Core.Basic
+import AdequacyArchitecture.Residual.Strata
 
 universe u
 
 namespace AdequacyArchitecture.Adjudication
 
-def NoAdjudicativeCollapse ( _α : Type u) : Prop := True
+open ReflexiveArchitecture.Universal
+
+def NoAdjudicativeCollapse {α β : Type u} (π : α → β) : Prop :=
+  MinimalExhaustive (Residual.rcsOfMap π)
 
 end AdequacyArchitecture.Adjudication

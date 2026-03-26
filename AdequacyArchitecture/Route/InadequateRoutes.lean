@@ -1,13 +1,16 @@
 /-
-  Counterforms: flat / burden-hiding routes (conceptual lemmas track).
+  Counterforms: flat / burden-hiding routes — non-injective comparison.
 -/
 
-import AdequacyArchitecture.Core.Basic
+import AdequacyArchitecture.Residual.Strata
 
 universe u
 
 namespace AdequacyArchitecture.Route
 
-def FlatRouteInadequate ( _α : Type u) : Prop := True
+open ReflexiveArchitecture.Universal
+
+def FlatRouteInadequate {α β : Type u} (π : α → β) : Prop :=
+  NonExhaustive (Residual.rcsOfMap π)
 
 end AdequacyArchitecture.Route

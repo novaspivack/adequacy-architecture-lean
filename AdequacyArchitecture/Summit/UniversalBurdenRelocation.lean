@@ -1,6 +1,7 @@
 /-
-  Summit conjecture 2 — **statement scaffold only** (not claimed proved).
-  Strong form: relocation into canonical carriers constrains route data (program plan §V).
+  Summit S2 — raw `RouteDatum` target (may trivialize via `feature := fun _ => True`).
+
+  **Lawful** summit shape: `AdequacyArchitecture.Lawful.UniversalBurdenRelocationLawful` (requires `LawfulRouteDatum`).
 -/
 
 import AdequacyArchitecture.Core.Basic
@@ -17,9 +18,9 @@ open AdequacyArchitecture.Burden (RelocationPair)
 
 variable {α : Type u}
 
-/-- **Open** summit statement: witnessed relocation pairs force some route witness (refine `RouteDatum` to Strata-style architecture fields). -/
+/-- **Summit target (not proved here):** relocation along `f` forces a route datum witnessing both endpoints. -/
 def UniversalBurdenRelocationConjecture : Prop :=
   ∀ (B : BurdenPredicates α) (f : Transform α) (m₁ m₂ : BurdenMode) (A : Account α),
-    RelocationPair B m₁ m₂ f A → ∃ _r : RouteDatum α, True
+    RelocationPair B m₁ m₂ f A → ∃ r : RouteDatum α, r.feature A ∧ r.feature (f A)
 
 end AdequacyArchitecture.Summit

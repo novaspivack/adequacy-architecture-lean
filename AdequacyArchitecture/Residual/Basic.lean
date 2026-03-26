@@ -1,3 +1,4 @@
+import AdequacyArchitecture.Residual.Strata
 import AdequacyArchitecture.Residual.CanonicalCarrier
 import AdequacyArchitecture.Residual.Geometry
 import AdequacyArchitecture.Residual.Composition

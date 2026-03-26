@@ -1,2 +1,5 @@
 import AdequacyArchitecture.Summit.UniversalIrreducibleAdequacy
 import AdequacyArchitecture.Summit.UniversalBurdenRelocation
+import AdequacyArchitecture.Summit.SummitOverClass
+import AdequacyArchitecture.Summit.SummitEngine
+import AdequacyArchitecture.Summit.SummitBranchRoles

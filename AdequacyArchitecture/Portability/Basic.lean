@@ -1,0 +1,23 @@
+/-
+  **SPEC_028_EK7** — portability / externalization hub. -/
+
+import AdequacyArchitecture.Portability.InstantiationCalculus
+import AdequacyArchitecture.Portability.SemanticLiftPortability
+import AdequacyArchitecture.Portability.FrontierPortability
+import AdequacyArchitecture.Portability.CaseStudyBoolTwoPoint
+import AdequacyArchitecture.Portability.CaseStudyUnitDegenerate
+import AdequacyArchitecture.Portability.CorpusCorridorPointer
+import AdequacyArchitecture.Portability.BranchGenericSemanticTransport
+import AdequacyArchitecture.Portability.GenericSemanticSummitLift
+import AdequacyArchitecture.Portability.S1ShapeNecessityCounterexample
+import AdequacyArchitecture.Portability.RawFrontierCheckpoint
+import AdequacyArchitecture.Portability.NativeBranchScale
+import AdequacyArchitecture.Portability.AbsoluteFrontierEarnedToy
+import AdequacyArchitecture.Portability.CorpusConditionalRidgeFrontier
+import AdequacyArchitecture.Portability.CertifiedFrontierRow
+import AdequacyArchitecture.Portability.RepresentationCalculusMX7
+import AdequacyArchitecture.Portability.SummitRowRepresentation
+
+namespace AdequacyArchitecture.Portability
+
+end AdequacyArchitecture.Portability

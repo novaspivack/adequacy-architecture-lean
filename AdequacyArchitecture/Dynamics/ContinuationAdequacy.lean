@@ -1,13 +1,17 @@
 /-
-  E1 — Continuation / viability layer (abstract).
+  E1 — Continuation / viability: comparison is injective on continuations (no spurious identification).
 -/
 
-import AdequacyArchitecture.Core.Basic
+import AdequacyArchitecture.Residual.Strata
 
 universe u
 
 namespace AdequacyArchitecture.Dynamics
 
-def ContinuationAdequate ( _α : Type u) : Prop := True
+open ReflexiveArchitecture.Universal
+
+/-- Viable continuation: the comparison map is **minimally exhaustive** (injective). -/
+def ContinuationAdequate {α β : Type u} (π : α → β) : Prop :=
+  MinimalExhaustive (Residual.rcsOfMap π)
 
 end AdequacyArchitecture.Dynamics

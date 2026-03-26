@@ -1,13 +1,16 @@
 /-
-  F2 — Route necessity (weak abstract slot; strengthen with Strata `layered_architecture_theorem` / gluing).
+  F2 — Route necessity (comparison injective ⇒ no bare collapse of distinct routes).
 -/
 
-import AdequacyArchitecture.Core.Basic
+import AdequacyArchitecture.Residual.Strata
 
 universe u
 
 namespace AdequacyArchitecture.Route
 
-def WeakRouteNecessity ( _α : Type u) : Prop := True
+open ReflexiveArchitecture.Universal
+
+def WeakRouteNecessity {α β : Type u} (π : α → β) : Prop :=
+  MinimalExhaustive (Residual.rcsOfMap π)
 
 end AdequacyArchitecture.Route

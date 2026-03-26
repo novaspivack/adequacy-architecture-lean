@@ -1,9 +1,13 @@
 /-
   C1 — Canonical residual carrier (abstract layer).
-  **Strata alignment:** import `ReflexiveArchitecture.Universal.Residual.*` and `UniversalForgetting` when `lakefile` wires `reflexive-architecture-lean` (see SPEC_001).
+  **Strata:** `lakefile` `require`s `«reflexive-architecture»`; see `Residual/Strata.lean`
+  and SPEC_001 (`rcsOfMap`, `ResidualKernel`, `forgettingKernel`).
 -/
 
 import AdequacyArchitecture.Core.Basic
+import AdequacyArchitecture.Residual.Strata
+
+open ReflexiveArchitecture.Universal
 
 universe u v
 
@@ -14,7 +18,11 @@ variable {α β : Type u}
 /-- Abstract comparison / projection (map-forgetting story). -/
 abbrev CompareMap := α → β
 
-/-- Placeholder residual witness until Strata `ResidualKernel` is imported. -/
+/-- Strata packaging of a comparison map as an `RCS` (SPEC_001: `rcsOfMap`). -/
+abbrev rcsOfCompareMap (f : α → β) : ReflectiveCertificationSystem β α :=
+  ReflexiveArchitecture.Universal.Residual.rcsOfMap f
+
+/-- Program-level tag; Strata residual kernel for `f` is `ResidualKernel (rcsOfCompareMap f)`. -/
 structure ResidualWitness (α : Type u) where
   tag : CarrierTag
 

@@ -1,0 +1,33 @@
+/-
+  Lawful band — universality class 𝒞 (SPEC_008).
+-/
+
+import AdequacyArchitecture.Lawful.LawfulStructures
+import AdequacyArchitecture.Lawful.ComparePullback
+import AdequacyArchitecture.Lawful.CanonicalCarrier
+import AdequacyArchitecture.Lawful.StratifiedLawfulArchitecture
+import AdequacyArchitecture.Lawful.MiddleInnerHooks
+import AdequacyArchitecture.Lawful.CompletedStratified
+import AdequacyArchitecture.Lawful.BottleneckTheorems
+import AdequacyArchitecture.Lawful.BridgeTargets
+import AdequacyArchitecture.Lawful.BridgeTheorems
+import AdequacyArchitecture.Lawful.ClassPhases
+import AdequacyArchitecture.Lawful.RidgeSummitStatements
+import AdequacyArchitecture.Lawful.RidgeSummitVsBridgeTargets
+import AdequacyArchitecture.Lawful.RidgeToyLikeContext
+import AdequacyArchitecture.Lawful.RidgeBridgeable
+import AdequacyArchitecture.Lawful.RidgeLawPackages
+import AdequacyArchitecture.Lawful.RidgeCompletionTheorems
+import AdequacyArchitecture.Lawful.AntiTrivial
+import AdequacyArchitecture.Lawful.MasterTheorem
+import AdequacyArchitecture.Lawful.RelocationSummit
+import AdequacyArchitecture.Lawful.ConditionalSummit
+import AdequacyArchitecture.Lawful.MasterConditionalSummit
+import AdequacyArchitecture.Lawful.FinalConditionalSummit
+import AdequacyArchitecture.Lawful.LawfulS2NonFlatOrthogonality
+import AdequacyArchitecture.Lawful.RelocationAlignedFinality
+import AdequacyArchitecture.Lawful.SummitS2Frontier
+import AdequacyArchitecture.Lawful.Fin2LawfulRelocationAtBurden
+import AdequacyArchitecture.Lawful.TwoPointLawfulRelocation
+import AdequacyArchitecture.Lawful.Fin2ParticipationDemoLawful
+import AdequacyArchitecture.Lawful.HigherSummitElevation
