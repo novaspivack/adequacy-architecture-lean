@@ -13,5 +13,6 @@ if [[ $# -gt 0 ]]; then
     compile_one "$f"
   done
 else
+  compile_one "Adequacy_Flagship_Paper.tex"
   compile_one "Program_Notes.tex"
 fi
