@@ -105,7 +105,7 @@ This paper answers that question within the Adequacy Architecture framework.
 The main discovery is that the apparent plurality of outer admissibility
 routes collapses to a single unified gate $\Gadm \equiv \Upb$, with a real
 frontier consequence, a grammar-cut maximality theorem, a disciplined
-boundary finding (NF4-C), a functorial second layer above admission, and
+boundary finding, a functorial second layer above admission, and
 a residual band of stronger IC-local content that is classified rather than
 dismissed.  The result is a strict three-level architecture, every boundary
 of which is characterized by a named, machine-checked theorem.
@@ -165,33 +165,35 @@ This is not a philosophical claim.  It is formalized as a hierarchy of
 machine-checked theorems:
 
 \begin{description}
-  \item[\textbf{No free adequate collapse (B1).}]
+  \item[\textbf{No free adequate collapse.}]
     If a representation is adequate in a non-trivial mode, it cannot erase
     all burden without paying elsewhere.  (\lean{no\_free\_adequate\_collapse},
     \leanmod{Burden/NoFreeCollapse.lean})
-  \item[\textbf{Burden relocates; it does not vanish (B2--B3).}]
+  \item[\textbf{Burden relocates; it does not vanish.}]
     Honest simplification moves structural obligations to another layer,
     carrier, or observability slot.  (\lean{burden\_not\_erased\_only\_relocated},
     \lean{adequacy\_preserving\_drop\_implies\_relocation},
     \leanmod{Burden/Relocation.lean})
-  \item[\textbf{Route architecture is forced (ridge / CS-1).}]
+  \item[\textbf{Route architecture is forced.}]
     Once adequacy and burden are genuinely entangled, route and finality
     claims stop being decorative --- they become part of what must be
     exhibited.  (\lean{master\_conditional\_summit\_ridge\_at},
-    \leanmod{Lawful/MasterConditionalSummit.lean}, SPEC\_021 CS-1)
-  \item[\textbf{Every map has a fundamental residual package.}]
+    \leanmod{Lawful/MasterConditionalSummit.lean})
+  \item[\textbf{Every map has a fundamental residual structure.}]
     Any forgetful or compressive morphism has a residual story: what was
     lost, where did it go, and what still observes it.
     (\lean{every\_map\_has\-\_fundamental\-\_residual\-\_package},
     \leanmod{Instances/WhatMapsForget.lean}; residual geometry via
-    imported Strata \lean{rcsOfMap} / \lean{vanishingCriterion})
-  \item[\textbf{Final summit (SPEC\_022).}]
+    the residual-geometry library \lean{rcsOfMap} / \lean{vanishingCriterion})
+  \item[\textbf{The highest reachable summit.}]
     $H_{\mathrm{final}}$: the highest reachable summit at any carrier is
-    packaged as \lean{highestReachable\_summit\_at} in the \lean{HFinal}
-    structure (\leanmod{Lawful/FinalConditionalSummit.lean}).  This is the
-    Layer~A target all outer admissibility routes aim at.  The three-branch
-    closure (SPEC\_026) shows NEMS, IC, and APS each supply \lean{HFinal}
-    at the corpus carrier.
+    packaged as the theorem \lean{highestReachable\_summit\_at}
+    (\leanmod{Lawful/FinalConditionalSummit.lean}).  This is the
+    target that all outer admissibility routes aim to supply.  The
+    three instantiation branches (halting/semantic, infinity-compression,
+    and continuation) each supply $H_{\mathrm{final}}$ at the standard
+    carrier; the outer gate unification theorem (\S\ref{sec:gate}) shows
+    that all three routes into the gate are equivalent.
 \end{description}
 
 \subsection{The outer classification problem}
@@ -220,7 +222,7 @@ The question is not merely ``does some predicate hold?''  It is:
     is not part of either?
 \end{enumerate}
 
-Program 1 of the Adequacy Architecture answers all four questions.
+The outer admissibility program of the Adequacy Architecture answers all four questions.
 
 % =============================================================================
 \section{Why this is hard and important}
@@ -247,19 +249,19 @@ by three structurally different constructor arms.  On the surface, these
 look like three different kinds of certificates:
 \begin{enumerate}
   \item A pullback display along a compare map.
-  \item An IC-native Stage-D full pack.
+  \item A full pack of conditions connecting the infinity-compression
+    architecture to the standard carrier.
   \item A certified upgrade witness from the representation calculus.
 \end{enumerate}
 There is no obvious reason these should be the same.
 
 From the demand side: any unified gate must have content.
-It cannot be vacuous.  The witness $\Upb$ requires a genuine
-\lean{CertifiedFrontierRepresentation} obtained by pulling back a lawful
-adequacy architecture along a compare map.  This in turn requires a
-non-trivial compression carrier pullback (through the IC arm,
-proved in \lean{SPEC\_031\_ZK9}) or an involutive compare-map
-cleaving argument (through the corpus swap arm, proved in
-\lean{SPEC\_035\_UC1}).
+It cannot be vacuous.  The witness $\Upb$ requires a genuine certified
+frontier representation obtained by pulling back a lawful adequacy
+architecture along a compare map.  This in turn requires a non-trivial
+compression carrier pullback (through the infinity-compression arm) or
+an involutive compare-map cleaving argument (through the carrier-swap arm),
+each proved as a separate machine-checked theorem~\cite{SpivackAdequacy}.
 
 \subsection{The breadth of the question}
 
@@ -270,9 +272,10 @@ examined.  It governs a wide family of certificate shapes:
   \item Abstract pullback display certificates along compare maps.
   \item Finite admissibility presentations with multiple constructor arms.
   \item Grammar-generated outer classes under declared normal forms.
-  \item Boundary certificates that are sound but not grammar-generated.
+  \item Boundary certificates that are sound but fall outside the grammar.
   \item Functorial structural consequences of admission.
-  \item Residual IC-specific packs above both layers.
+  \item Residual stronger conditions above both levels that are specific
+    to a particular instantiation branch.
 \end{itemize}
 
 Each of these is a different kind of ``outer certificate.''  The theorem
@@ -312,15 +315,16 @@ Before the technical machinery, the central picture can be stated plainly.
     $\Gadm \equiv \Upb$.
   \item The unified gate \textbf{has a real consequence}: it implies the
     existence of an absolute frontier S1 certificate.
-  \item The gate is \textbf{maximal under the declared grammar} (OG1,
-    NF0--NF3).  No grammar-generated class exceeds it.
+  \item The gate is \textbf{maximal under the declared grammar}
+    (NF0--NF3).  No grammar-generated class exceeds it.
   \item The \textbf{nearest expansion candidate} (NF4, the $\SoneLawful$
     predicate) does not force grammar expansion.  The boundary is stable.
   \item Above the gate, a \textbf{functorial second layer} is canonically
     produced without additional hypotheses.  It is not a new admissibility
     mode; it is what admission unlocks.
-  \item \textbf{Stronger Stage-D content is residual}: IC-specific,
-    partially reconstructible, and carrying a genuine irreducible obstruction.
+  \item \textbf{Stronger branch-specific content is residual}: particular
+    to one instantiation branch, partially reconstructible from named
+    hypotheses, and carrying a genuine irreducible obstruction.
     It is not primitive to the outer gate.
 \end{enumerate}
 \end{keybox}
@@ -329,8 +333,9 @@ The result is a three-level architecture:
 \begin{itemize}
   \item \textbf{Level 1.} The outer gate of admission ($\Gadm \equiv \Upb$).
   \item \textbf{Level 2.} The functorial second layer ($\Upb \Rightarrow \Stwo$).
-  \item \textbf{Residual band.} Stage D --- IC-local, above both levels,
-    partially reconstructible but irreducibly richer.
+  \item \textbf{Residual band.} A branch-specific stronger condition above
+    both levels --- partially reconstructible but carrying an irreducible
+    obstruction not reachable from the outer gate alone.
 \end{itemize}
 
 This picture is not a sketch.  Every arrow is a named Lean theorem.  The
@@ -353,28 +358,30 @@ predicates at a type-indexed slot $\gamma$.
   \begin{enumerate}
     \item A pullback display arm:
       $\lean{Program1AdmissibilityPullbackDisplayWitness}\,\gamma$.
-    \item An IC Stage-D full pack arm:
+    \item A branch-native full pack arm (connecting the
+      infinity-compression architecture to the standard carrier):
       $\lean{Program1IcStageDFullPackWitness}\,\gamma$.
-    \item An upgrade witness arm:
+    \item A representation-calculus upgrade witness arm:
       $\lean{Program1CertifiedUpgradeWitness}\,\gamma$.
   \end{enumerate}
 \end{definition}
 
 \begin{definition}[Pullback display witness --- $\Upb$]
   $\Upb\,\gamma$ (\lean{Program1Admissibility\-PullbackDisplayWitness}) holds
-  when there exists a \lean{CertifiedFrontierRepresentation} obtained by
-  pulling back a \lean{LawfulAdequacyArchitecture} along a compare map at
+  when there exists a certified frontier representation obtained by
+  pulling back a lawful adequacy architecture along a compare map at
   $\gamma$.
 \end{definition}
 
-$\Upb$ is not vacuous.  The IC arm requires a non-trivial compression
-carrier pullback (\lean{SPEC\_031\_ZK9}).  The corpus swap arm requires an
-involutive compare-map cleaving argument (\lean{SPEC\_035\_UC1}).
+$\Upb$ is not vacuous.  The branch-native arm requires a non-trivial
+compression carrier pullback.  The carrier-swap arm requires an
+involutive compare-map cleaving argument.  Both are proved as separate
+machine-checked theorems~\cite{SpivackAdequacy}.
 
-\subsection{The grammar}
+\subsection{The outer normal-form grammar}
 
-The OG1 grammar is the closure of the outer normal forms under declared
-grammar rules:
+The outer grammar is the closure of the following four normal forms under
+declared grammar rules:
 \begin{description}
   \item[NF0.] Bare pullback display.
   \item[NF1.] Certified frontier row.
@@ -382,7 +389,11 @@ grammar rules:
   \item[NF3.] Composition of the above.
 \end{description}
 $\Ggen\,C$ means $C : \mathsf{Type} \to \mathsf{Prop}$ is
-generated by this grammar.  NF4 ($\SoneLawful$) is outside the grammar.
+generated by this grammar.  NF4 ($\SoneLawful$), the lawful S1 frontier
+row predicate, lies outside the grammar.  The maximality theorem
+(\S\ref{sec:maximality}) shows that nothing grammar-generated exceeds
+the outer gate, and the NF4 boundary analysis shows that even this
+nearest non-generated candidate does not force expansion.
 
 \subsection{Notation}
 
@@ -394,7 +405,7 @@ Symbol & Lean name & Meaning \\
 \hline
 $\Gadm\,\gamma$ & \lean{Program1FiniteGAdm} & finite admissibility gate \\
 $\Upb\,\gamma$ & \lean{Program1AdmissibilityPullbackDisplayWitness} & pullback display witness \\
-$\Ggen\,C$ & \lean{Program1GrammarGeneratedOuterGate} & OG1-grammar-generated \\
+$\Ggen\,C$ & \lean{Program1GrammarGeneratedOuterGate} & grammar-generated \\
 $\AbsRawSone(P,B)$ & \lean{AbsoluteFrontierRawS1} & absolute frontier S1 certificate \\
 $\SoneLawful\,\gamma$ & \lean{Nonempty (S1LawfulFrontierRow $\gamma$)} & NF4 win predicate \\
 $\Stwo\,\gamma$ & \lean{pullbackDisplay\_with\_host\_summitFE3} & S5 / Level-2 package \\
@@ -403,42 +414,44 @@ $\StageD\,\gamma$ & \lean{icSpec031\_stageD\_resolution\_pack} & IC Stage-D four
 \end{tabular}
 \end{center}
 
-\subsection{Prior summit contract}
+\subsection{Prior summit theorem}
 
-The outer gate program builds on the \emph{final conditional summit
-contract} of SPEC\_022~\cite{SpivackAdequacy}.  The structure \lean{HFinal}
-(\leanmod{Lawful/FinalConditionalSummit.lean}) packages the highest reachable
-summit $H_{\mathrm{final}}$ at any carrier, together with the conditional
-ridge hypothesis $H_{\mathrm{final}}$ that the outer gate must supply.
-The master theorem \lean{highestReachable\_summit\_at} is the Layer~A
-target all outer certificate routes aim at.  The outer gate unification
-result (Theorem~\ref{thm:unification}) shows that \emph{all three constructor
-arms of $\Gadm$ supply this target through $\Upb$}.
+The outer gate program builds on an earlier machine-checked summit theorem:
+\lean{highestReachable\_summit\_at} (\leanmod{Lawful/FinalConditionalSummit.lean})
+packages the highest reachable summit at any carrier as a structured
+machine-checked object $H_{\mathrm{final}}$.  This is the target that all
+outer certificate routes aim to supply --- admission at $\gamma$ means
+supplying $H_{\mathrm{final}}$ through the pullback display witness.  The
+unification theorem (\S\ref{sec:gate}) shows that all three constructor
+arms of $\Gadm$ supply this target through $\Upb$, so the three routes
+to the summit are logically equivalent.
 
-\subsection{Strata dependency}
+\subsection{Residual geometry}
 
-The Lean package depends directly on the
-\lean{reflexive-architecture} library (which transitively pulls NEMS /
-infinity-compression) and on \lean{aps\_recursion\_uniformization\_lean}.
-The residual geometry --- \lean{rcsOfMap}, \lean{vanishingCriterion},
-\lean{forgettingKernel} --- is imported from Strata via
-\leanmod{Residual/Strata.lean}.  The canonical residual theorem
+The Lean package imports a residual-geometry library that formalizes what
+forgetful morphisms lose.  The canonical theorem
 \lean{every\_map\_has\_fundamental\_residual\_package}
-(\leanmod{Instances/WhatMapsForget.lean}) is the formalized statement that
-every forgetful morphism has a \lean{FundamentalResidualPackage}.  This
-is the machine-checked form of the fifth canonical law.
+(\leanmod{Instances/WhatMapsForget.lean}) states that every forgetful
+morphism has a fundamental residual structure: a machine-checked record
+of what was lost in the map, what still observes it, and what the residual
+geometry looks like.  This is the machine-checked form of the fifth
+canonical law (``if the burden is invisible, suspect the map''), and it
+provides the general framework in which the residual band of
+\S\ref{sec:residual} is a specific instance.
 
 \subsection{Scope discipline}
 
 \begin{itemize}
-  \item No claim of unconstrained $\forall P\,B$.  Global raw frontier is
-    post-closure per SPEC\_034\_PC7~\cite{SpivackAdequacy} and remains open
-    (see \S\ref{sec:beyond}).
-  \item Maximality is grammar-cut: within OG1 (NF0--NF3), not over all
-    possible predicates.
-  \item NF4-C is a boundary report, not a completeness claim.
-  \item Stage D residual is IC-local.  Its irreducibility is an honest
-    finding, not a deficiency.
+  \item No claim of unconstrained $\forall P\,B$.  An unconditional
+    frontier result for arbitrary predicate pairs is the next genuine
+    research frontier; it is not part of the present theorems (see
+    \S\ref{sec:beyond} and~\cite{SpivackAdequacy}).
+  \item Maximality is grammar-cut: within the declared normal-form grammar
+    (NF0--NF3), not over all possible predicates.
+  \item The NF4 boundary analysis is a boundary report, not a completeness
+    claim.
+  \item The residual band (\S\ref{sec:residual}) is branch-specific.  Its
+    irreducibility is an honest finding, not a deficiency.
   \item All theorems below are machine-checked; 0 \texttt{sorry}.
     Toolchain: Lean~4 v4.29.0-rc6, Mathlib v4.29.0-rc6~\cite{Mathlib}.
 \end{itemize}
@@ -452,7 +465,7 @@ is the machine-checked form of the fifth canonical law.
 The first major result shows that the apparent plurality of admissibility
 routes collapses.
 
-\begin{theorem}[Program 1 Unification]
+\begin{theorem}[Unification]
 \label{thm:unification}
   For all $\gamma$,\quad $\Gadm\,\gamma \iff \Upb\,\gamma$.
 \end{theorem}
@@ -469,18 +482,19 @@ This is nontrivial in both directions.
 constructor arms of $\Gadm$ must be shown to produce a $\Upb$ witness:
 \begin{itemize}
   \item The pullback arm is immediate (first constructor).
-  \item The IC Stage-D arm threads through the compression carrier pullback
-    proved in \lean{SPEC\_031\_ZK9} (IC native compare-map representation).
-  \item The upgrade witness arm factors through
-    \lean{CertifiedSummitRowRepresentation} via the representation-calculus
-    gate in \lean{SPEC\_033\_RL9}.
+  \item The branch-native full pack arm threads through a non-trivial
+    compression carrier pullback (the infinity-compression compare-map
+    representation, proved separately in the Lean library).
+  \item The upgrade witness arm factors through the certified summit-row
+    representation via the representation-calculus gate.
 \end{itemize}
 
 \emph{The gate is not empty (the honesty direction).}  $\Upb$ requires a
 genuine lawful adequacy architecture pulled back along a compare map at
-$\gamma$.  The four instantiated witnesses --- IC CS-3 pullback, corpus
-NV-id level, corpus NV-swap level, Fin 3 parity quotient --- each require
-their own non-trivial arguments.
+$\gamma$.  Four concrete witnesses have been constructed --- using the
+infinity-compression pullback, an identity-level corpus instantiation, a
+carrier-swap corpus instantiation, and a parity quotient on a three-element
+type --- each requiring distinct non-trivial arguments~\cite{SpivackAdequacy}.
 
 \subsection{The absolute frontier consequence}
 
@@ -499,8 +513,8 @@ program1FiniteGAdm_implies_exists_absoluteFrontierRawS1 :
 This is the outer payoff: admission at any $\gamma$ witnesses the
 non-emptiness of the absolute frontier.  The absolute frontier
 $\AbsRawSone(P,B)$ is the frontier of the adequacy landscape: it says
-the highest reachable summit has been reached, as formalized in the
-SPEC\_027 absolute-frontier program.
+the highest reachable summit exists for some concrete predicate--burden pair,
+as formalized in the machine-checked absolute-frontier program~\cite{SpivackAdequacy}.
 
 \subsection{Why the collapse is significant}
 
@@ -511,7 +525,7 @@ The compression is real.  The three arms were designed to capture different
 structural routes to admissibility.  The theorem says those routes converge.
 
 This is a classification result.  It says: for the disciplined
-Program-1 certificate world, there is a unique admissibility condition
+outer admissibility world, there is a unique admissibility condition
 in the sense that all finite presentations of it are equivalent.
 
 % =============================================================================
@@ -543,12 +557,13 @@ that everything we know satisfies, but which could in principle be exceeded
 by some more expressive grammar-generated class we have not tried.  With it,
 the gate is tight: within the declared scope, there is no room above it.
 
-\subsection{The NF4 boundary finding (NF4-C)}
+\subsection{The NF4 boundary finding}
 
-The nearest principled candidate for a broader outer class is the NF4 win
-predicate $\SoneLawful\,\gamma := \lean{Nonempty (S1LawfulFrontierRow}\,\gamma)$.
+The nearest principled candidate for a broader outer class is the NF4
+predicate $\SoneLawful\,\gamma$, which asserts the non-emptiness of a
+lawful S1 frontier row at $\gamma$.
 
-\begin{theorem}[NF4 Layer-B soundness]
+\begin{theorem}[NF4 outer soundness]
 \label{thm:nf4-sound}
   For all $\gamma$,\quad $\SoneLawful\,\gamma \Rightarrow
   \lean{program1OuterLayerBLaw}\,\gamma$.
@@ -560,10 +575,11 @@ Program1OuterCertificateSound_program1OuterWinS1LawfulNonempty :
 -- Module: Instances/Program1MaximalityMA1.lean
 \end{leanbox}
 
-The NF4-C verdict records three facts jointly:
+The NF4 boundary analysis records three facts jointly:
 \begin{enumerate}
-  \item $\SoneLawful$ is Layer-B sound (Theorem~\ref{thm:nf4-sound}).
-  \item $\SoneLawful$ is \emph{not} grammar-generated under OG1 (not NF0--NF3).
+  \item $\SoneLawful$ is outer-sound: it implies the outer layer law
+    (Theorem~\ref{thm:nf4-sound}).
+  \item $\SoneLawful$ is \emph{not} grammar-generated (not NF0--NF3).
   \item There is \emph{no proved universal} $\SoneLawful\,\gamma \Rightarrow \Upb\,\gamma$.
 \end{enumerate}
 
@@ -572,8 +588,8 @@ promoted to the operative outer gate.
 
 \subsection{Counterexample: S1-shape is necessary}
 
-Before stating what NF4-C means, we note that SPEC\_030 (Stage B+) proves
-an explicit counterexample showing the S1-shape condition is not vacuous:
+Before stating what the NF4 boundary means, we note that an explicit
+machine-checked counterexample shows the S1-shape condition is not vacuous:
 
 \begin{leanbox}
 not_s1LawfulFrontierRow_counterexample_pair :
@@ -586,9 +602,9 @@ This means the S1-shape requirement in the architecture is load-bearing:
 it is not trivially satisfied.  The grammar boundary separates something
 real from something vacuous.
 
-\subsection{What the NF4-C finding means}
+\subsection{What the NF4 boundary means}
 
-NF4-C matters in two directions simultaneously.
+The NF4 finding matters in two directions simultaneously.
 
 \emph{Downward:} it confirms the architecture is not trivially
 all-encompassing.  The grammar boundary is real.  There exist predicates
@@ -601,19 +617,19 @@ architecture is stable at its current boundary --- not because we could not
 find anything stronger, but because the nearest candidate was examined and
 did not fit.
 
-The combination of Theorems~\ref{thm:maximality} and~\ref{thm:nf4-sound}
-gives a rigorous sense in which $\Upb$ is the right outer gate at the current
-level of structure: maximal in the declared grammar, and stable against the
+Together, Theorems~\ref{thm:maximality} and~\ref{thm:nf4-sound} give a
+rigorous sense in which $\Upb$ is the right outer gate at the current level
+of structure: maximal in the declared grammar, and stable against the
 nearest boundary test.
 
 % =============================================================================
 \section{The second layer above admission}
 \label{sec:second-layer}
 
-\subsection{The S5 / Level-2 consequence}
+\subsection{The second-layer consequence}
 
-One of the most structurally important results of the program is not about
-the outer gate itself.  It is about what the outer gate unlocks.
+One of the most structurally important results is not about the outer gate
+itself.  It is about what the outer gate unlocks.
 
 \begin{theorem}[Functorial second layer]
 \label{thm:second-layer}
@@ -630,7 +646,7 @@ program1_layer2PullbackDisplay_with_host_summitFE3_of_program1FiniteGAdm :
 \end{leanbox}
 
 The $\Stwo$ package (\lean{pullbackDisplay\_with\_host\_summitFE3}) combines
-the pullback display with a host-side \lean{summitFE3} certificate.  It is
+the pullback display with a host-side summit certificate.  It is
 obtained by projecting from the same witness that gives $\Upb\,\gamma$
 --- no additional hypotheses are required.
 
@@ -668,22 +684,21 @@ admission witness.
 
 This has a conceptual implication for how one should think about outer
 certificates.  An outer certificate is not just a stamp of approval.  It
-is an entry ticket to a richer structural world.  The S5 / summit-FE3
-package is that world: it packages the pullback display together with
-a host-side summit-FE3 certificate, giving a richer simultaneous
-view than admission alone provides.
+is an entry ticket to a richer structural world.  The second-layer package
+packages the pullback display together with a host-side summit certificate,
+giving a richer simultaneous view than admission alone provides.
 
 % =============================================================================
 \section{Stage D and the residual band}
 \label{sec:residual}
 
-\subsection{What Stage D is}
+\subsection{What the residual condition is}
 
-Stage D (\lean{icSpec031\_stageD\_resolution\_pack}) is the IC-native
-condition connecting the IC compression architecture to the corpus
-$H_{\mathrm{final}}$.  It has a four-conjunct resolution pack:
+The residual condition $\StageD$ is a branch-specific pack of requirements
+connecting the infinity-compression architecture to the highest reachable
+summit at the standard carrier.  It decomposes into four conjuncts:
 
-\begin{theorem}[Stage D resolution]
+\begin{theorem}[Residual condition decomposition]
 \label{thm:staged-d}
   For all $\gamma$,
   \[
@@ -691,17 +706,17 @@ $H_{\mathrm{final}}$.  It has a four-conjunct resolution pack:
     \;\iff\;
     F_1(\gamma) \;\wedge\; F_2(\gamma) \;\wedge\; F_3(\gamma) \;\wedge\; F_4(\gamma)
   \]
-  where $F_1 =$ AF1 obstruction entry, $F_2 =$ absolute-frontier S1
+  where $F_1 =$ obstruction entry, $F_2 =$ absolute-frontier S1
   conjunct, $F_3 =$ bypass, $F_4 =$ cascade.
 \end{theorem}
 
-Each of the four conjuncts has a named Lean hook (see the companion note
-for exact names).  Facets $F_1$, $F_3$, $F_4$ are reconstructible from
-named hypotheses.  $F_2$ is the irreducible residue.
+Each of the four conjuncts has a named machine-checked lemma (see the
+companion note for exact names).  Facets $F_1$, $F_3$, $F_4$ are
+reconstructible from named hypotheses.  $F_2$ is the irreducible residue.
 
-\subsection{The SR-B verdict}
+\subsection{The residuality result}
 
-\begin{proposition}[Stage D residuality (SR-B)]
+\begin{proposition}[Residual condition residuality]
 \label{prop:sr-b}
   \begin{enumerate}[label=(\alph*)]
     \item $\Upb\,\gamma$ does not imply $\StageD\,\gamma$ in general.
@@ -715,41 +730,42 @@ named hypotheses.  $F_2$ is the irreducible residue.
 
 \subsection{Why residuality matters}
 
-Without SR-B, one might conclude: ``Stage D is just another outer
-admissibility condition; we should add it to the gate.''  SR-B closes this
-off decisively.
+Without this residuality result, one might conclude: ``the residual
+condition is just another outer admissibility condition; we should add it
+to the gate.''  Proposition~\ref{prop:sr-b} closes this off decisively.
 
-Stage D is not primitive to the outer gate.  It is not part of the S5
-layer.  It is IC-specific extra structure that has its own internal
-organization (the four conjuncts) and its own obstruction ($F_2$ / AF1).
+The residual condition $\StageD$ is not primitive to the outer gate.  It
+is not part of the second layer.  It is branch-specific extra structure
+that has its own internal organization (the four conjuncts) and its own
+obstruction ($F_2$).
 
 This means the architecture has a clean outer boundary ($\Upb$) and a
 clean second layer ($\Stwo$), and \emph{everything beyond that is
 residual} --- not foreign, not ignored, but structurally downstream
-and IC-specific.
+and branch-specific.
 
-The residual theorem is what makes the two-level picture honest: it says
-that the genuinely stronger IC conditions do not sneak back into Level 1
-or Level 2.  They live in their own residual band, partially accessible
-via named hooks, with an irreducible core.
+The residuality result is what makes the two-level picture honest: it says
+that the genuinely stronger branch-specific conditions do not sneak back
+into Level~1 or Level~2.  They live in their own residual band, partially
+accessible via named lemmas, with an irreducible core.
 
-\subsection{The residual band and \texttt{WhatMapsForget}}
+\subsection{The residual band and what maps forget}
 
 The residual band is not an ad hoc finding.  It is the outer gate
 manifestation of the general residual principle formalized throughout
 the architecture.
 
 The theorem \lean{every\_map\_has\_fundamental\_residual\_package}
-states that every forgetful morphism has a \lean{FundamentalResidualPackage}
---- a machine-checked record of what was lost in the map, what still
-observes it, and what the residual geometry looks like.  This is the
-Strata-side formalization of the fifth canonical law (``if the burden is
+states that every forgetful morphism has a fundamental residual
+structure --- a machine-checked record of what was lost in the map, what
+still observes it, and what the residual geometry looks like.  This is
+the machine-checked form of the fifth canonical law (``if the burden is
 invisible, suspect the map'').
 
-Stage D's irreducible $F_2$ conjunct is a specific instance of this
-principle in the IC-local setting: the map from the outer gate to the IC
-compression architecture forgets exactly the $F_2$ content, and that
-content is what the \lean{WhatMapsForget} residual records.
+The irreducible conjunct $F_2$ of the residual condition is a specific
+instance of this principle: the map from the outer gate to the
+infinity-compression architecture forgets exactly the $F_2$ content, and
+that content is what the fundamental residual structure records.
 
 \subsection{The significance of the residual band}
 
@@ -758,8 +774,8 @@ It is a finding.
 
 The architecture is not claiming that $\Upb$ governs everything.  It is
 claiming that $\Upb$ is the right outer gate at its level of structure,
-and that what lies beyond it is IC-specific content with its own
-structural character.  The SR-B verdict locates that content precisely.
+and that what lies beyond it is branch-specific content with its own
+structural character.  The residuality result locates that content precisely.
 
 This is the deeper picture.  The residual band is the boundary between
 ``what the outer gate governs'' and ``what requires more specific internal
@@ -776,11 +792,11 @@ there, is part of the architecture's contribution.
 \begin{tcolorbox}[colback=gray!5, colframe=gray!40, width=0.88\linewidth,
   arc=3pt, boxrule=0.5pt]
 \begin{Verbatim}[fontsize=\small]
-  NF4 (S1Lawful)  -- Layer-B sound; not grammar-generated;
-                     no universal S1Lawful -> U_pullback  [NF4-C]
+  NF4 (S1Lawful)  -- outer-sound; not grammar-generated;
+                     no universal S1Lawful -> U_pullback
         ^
   ---------------------------------------------------------
-  Residual: Stage D  (IC-local; SR-B; partial basis;
+  Residual: branch-specific condition  (partial basis;
                        F2 is irreducible w.r.t. U_pullback)
         ^
   ---------------------------------------------------------
@@ -801,7 +817,7 @@ from $\Upb$ alone.
 
 \subsection{The integrated claim}
 
-For the disciplined Program-1 certificate world:
+For the disciplined outer admissibility world:
 
 \begin{enumerate}[label=(\arabic*)]
   \item \textbf{One outer gate.}
@@ -814,13 +830,13 @@ For the disciplined Program-1 certificate world:
     (Theorem~\ref{thm:frontier}).
 
   \item \textbf{Grammar ceiling.}
-    No OG1-grammar-generated predicate exceeds $\Upb$
+    No grammar-generated predicate (NF0--NF3) exceeds $\Upb$
     (Theorem~\ref{thm:maximality}).
 
   \item \textbf{Stable boundary.}
     The nearest expansion candidate (NF4) does not force grammar expansion;
-    the architecture is stable at its current scope (NF4-C,
-    \S\ref{sec:maximality}).
+    the architecture is stable at its current scope
+    (\S\ref{sec:maximality}).
 
   \item \textbf{Functorial second layer.}
     $\Upb\,\gamma \Rightarrow \Stwo\,\gamma$, canonically, from the same
@@ -829,8 +845,8 @@ For the disciplined Program-1 certificate world:
 
   \item \textbf{Residual band.}
     $\StageD$ is not primitive to the outer gate, carries a genuine
-    IC-local irreducible residue, and is partially reconstructible from
-    named hooks
+    branch-specific irreducible residue, and is partially reconstructible
+    from named lemmas
     (Proposition~\ref{prop:sr-b}).
 \end{enumerate}
 
@@ -842,22 +858,16 @@ machine-checked proof:
 \begin{description}
 \item[] $\Gadm \iff \Upb$:
     \lean{program1FiniteGAdm\_iff\_program1Admissibility\-PullbackDisplayWitness}
-    (SPEC\_037 / MU1).
   \item[] $\Gadm \Rightarrow \AbsRawSone$:
     \lean{program1FiniteGAdm\_implies\_exists\_absolute\-FrontierRawS1}
-    (SPEC\_036 / MU1).
   \item[] $\Ggen \subseteq \Upb$:
     \lean{program1\_outer\_grammar\_cut\_maxA}
-    (SPEC\_041 / OG1).
-  \item[] $\SoneLawful \Rightarrow \text{Layer-B law}$:
+  \item[] $\SoneLawful \Rightarrow \text{outer soundness}$:
     \lean{Program1OuterCertificate\-Sound\_program1Outer\-WinS1LawfulNonempty}
-    (SPEC\_044 / MA1).
   \item[] $\Upb \Rightarrow \Stwo$:
     \lean{program1\_layer2PullbackDisplay\_with\_host\_\-summitFE3\_of\_U\_pullback}
-    (SPEC\_042 / LS1).
   \item[] $\StageD$ residuality:
-    \lean{icSpec031\_stageD\_resolution\_pack} + SR1 facets
-    (SPEC\_031 / SPEC\_043).
+    \lean{icSpec031\_stageD\_resolution\_pack} + facet lemmas
 \end{description}
 
 % =============================================================================
@@ -870,10 +880,13 @@ The unification result covers a concrete range of admissibility
 presentations already:
 
 \begin{itemize}
-  \item IC CS-3 pullback (compression carrier along a constant compare map).
-  \item Corpus NV-id and NV-swap levels (involutive compare-map cleaving).
-  \item Fin 3 parity quotient (strict intermediate quotient on $\mathrm{Fin}\,3$).
-  \item Certified upgrade witness arm (representation-calculus gate).
+  \item The infinity-compression pullback arm (compression carrier along
+    a constant compare map).
+  \item Two carrier-level corpus instantiations (identity and carrier-swap,
+    the latter proved via an involutive cleaving argument).
+  \item A parity quotient on a three-element type (a strict intermediate
+    quotient on $\mathrm{Fin}\,3$).
+  \item The certified upgrade witness arm (representation-calculus gate).
 \end{itemize}
 
 These are structurally heterogeneous instances.  That they all collapse to
@@ -882,15 +895,15 @@ proof.
 
 \subsection{Why the maximality result is not local}
 
-Grammar-cut maximality says: \emph{any} predicate generated by the OG1
-grammar collapses to $\Upb$.  The grammar is not just about the specific
-instances above.  It is about the closure under NF0--NF3 normal forms.
+Grammar-cut maximality says: \emph{any} predicate generated by the outer
+normal-form grammar collapses to $\Upb$.  The grammar is not just about
+the specific instances above.  It is about the closure under NF0--NF3.
 This means the result generalizes beyond the specific instantiations
 proved so far, to all possible grammar-generated predicates.
 
 \subsection{The boundary test}
 
-The NF4-C finding provides an independent robustness check.  Before
+The NF4 boundary finding provides an independent robustness check.  Before
 claiming that $\Upb$ is the right outer gate, one should ask: is there
 some nearby candidate that would exceed it?  The nearest candidate was
 $\SoneLawful$ (the NF4 win predicate).  That candidate was examined and
@@ -904,10 +917,11 @@ That claim would be false: NF4 exists and is not grammar-generated.  The
 correct claim is grammar-cut maximality, which is both true and
 informative.
 
-Similarly, the architecture does not claim that Stage D is unreachable
-or unimportant.  The SR-B verdict says Stage D is residual --- it has a
-partial basis and an irreducible residue.  That is an honest characterization
-of its relationship to the outer gate, not a dismissal.
+Similarly, the architecture does not claim that the residual condition is
+unreachable or unimportant.  The residuality result says $\StageD$ is
+residual --- it has a partial basis and an irreducible residue.  That is
+an honest characterization of its relationship to the outer gate, not a
+dismissal.
 
 % =============================================================================
 \section{Breadth: what this architecture governs}
@@ -917,9 +931,9 @@ of its relationship to the outer gate, not a dismissal.
 
 The Adequacy Architecture governs any system where:
 \begin{itemize}
-  \item There is a notion of adequacy with real burden (non-trivial B1).
-  \item There is a lawful class of architectures ($\mathcal{C}$) supporting
-    stratified adequacy, bottlenecks, and bridge structure.
+  \item There is a notion of adequacy with real, non-erasable burden.
+  \item There is a lawful class of architectures supporting stratified
+    adequacy, bottleneck structure, and bridge relationships between layers.
   \item There are outer certificate predicates evaluated at type-indexed
     slots.
   \item There is a grammar of outer normal forms.
@@ -927,32 +941,38 @@ The Adequacy Architecture governs any system where:
 
 Within such a system, the entire theorem stack applies.
 
-\subsection{Three branches}
+\subsection{Three instantiation branches}
 
-The three-branch structure of the adequacy architecture --- NEMS
-(Halting/Semantic), IC (Infinity Compression), and APS (Continuation) ---
-each supplies a distinct instantiation route into the outer gate.
+The architecture has three concrete instantiation branches:
+\begin{itemize}
+  \item The \emph{halting/semantic} branch (NEMS), which provides
+    halting-anchored semantic summit certificates.
+  \item The \emph{infinity-compression} branch (IC), which provides
+    compression carriers and native stage-D structure.
+  \item The \emph{continuation uniformization} branch (APS), which
+    provides indexed middle-layer structure via recursion uniformization.
+\end{itemize}
 
-The three-branch closure theorem (\lean{three\_branch\_corpus\_highest\_summit\_at},
-SPEC\_026) shows that all three branches supply the outer summit at the
-corpus carrier.  The role-aware three-branch representation bundle
-(\lean{standardRoleAwareRepresentationBundle}, SPEC\_030) packages these
-with branch role tags.  The outer gate unification (Theorem~\ref{thm:unification})
+Each branch supplies a distinct instantiation route into the outer gate.
+The three-branch closure theorem
+(\lean{three\_branch\_corpus\_highest\_summit\_at})
+shows that all three branches supply the highest reachable summit at the
+standard carrier.  The outer gate unification (Theorem~\ref{thm:unification})
 then shows that what all three branches contribute collapses to the same
 outer gate.
 
 This means the outer gate theorem is not a statement about one branch.
 It is a statement about the whole three-branch structure.
 
-The NEMS branch in particular carries a full semantic faithfulness story.
+The halting/semantic branch carries a full semantic faithfulness story.
 The theorem \lean{summitReportOf\-\_indexed\-\_master\-\_agreement\-\_consequences}
-(\leanmod{Instances/NEMSSemantic\-FaithfulTransport.lean}, SPEC\_025 Phase~G)
-packages all consequences of master-indexed \lean{summitReportOf} agreement
---- agreed summit, summit certificate, indexed certificates, forgetful lifts
-through the fourfold summit slot --- as a single machine-checked bundle.
-This is the branch-level analogue of the outer gate: it says that the
-NEMS semantic faithfulness story collapses to a single master agreement
-consequence, just as the outer gate collapses to a single $\Upb$.
+(\leanmod{Instances/NEMSSemantic\-FaithfulTransport.lean})
+packages all consequences of master-indexed summit agreement --- agreed
+summit, summit certificate, indexed certificates, forgetful lifts through
+the fourfold summit slot --- as a single machine-checked bundle.
+This is the branch-level analogue of the outer gate: the halting/semantic
+faithfulness story collapses to a single master agreement consequence,
+just as the outer gate collapses to a single $\Upb$.
 
 \subsection{The five canonical laws, re-read}
 
@@ -972,9 +992,10 @@ the map) each find a reflection in the outer classification results:
   \item \emph{Final simplicity is not cheaply flat}: NF4 exists, is sound,
     but does not collapse to the gate.  The nearest ``simpler'' account
     is not equivalent to the gate.
-  \item \emph{If the burden is invisible, suspect the map}: Stage D's
-    irreducibility ($F_2$) is precisely this --- the IC-local map to the
-    AF1 obstruction is the place where the residual burden is held.
+  \item \emph{If the burden is invisible, suspect the map}: the residual
+    condition's irreducibility ($F_2$) is precisely this --- the map from
+    the outer gate to the branch-specific architecture forgets exactly
+    the $F_2$ content, which is where the residual burden is held.
 \end{enumerate}
 
 % =============================================================================
@@ -984,29 +1005,32 @@ the map) each find a reflection in the outer classification results:
 The architecture is not claiming to be complete in a global sense.  Three
 frontiers are honestly open.
 
-\subsection{Global raw $\forall P\,B$}
+\subsection{Global unconditional frontier}
 
-$\AbsRawSone(P,B)$ for an arbitrary predicate pair without hypotheses
-remains open.  This is the honest post-closure frontier per
-\lean{SPEC\_034\_PC7}.  It is not a missing piece of the current
-architecture; it is the next genuine research frontier.
+The existence of an absolute frontier S1 certificate for an arbitrary
+predicate--burden pair without hypotheses --- $\AbsRawSone(P,B)$ for all
+$P,B$ --- remains open.  This is the next genuine research frontier
+beyond the outer gate program~\cite{SpivackAdequacy}.  It is not a missing
+piece of the current architecture; it is where the current architecture
+points next.
 
 \subsection{Broader outer grammar}
 
-If a principled broader-than-OG1 grammar is ever chartered, the
-grammar-cut maximality result would need re-examination in that scope.
-NF4-C is not a proof that no broader grammar is possible.  It is a proof
-that the nearest specific candidate (NF4) did not force one now.  A
-future program could, in principle, extend the grammar and re-examine the
-ceiling.
+If a principled grammar larger than the current NF0--NF3 normal-form
+grammar were ever chartered, the grammar-cut maximality result would need
+re-examination in that scope.  The NF4 boundary finding is not a proof that
+no broader grammar is possible.  It is a proof that the nearest specific
+candidate (NF4) did not force one now.  A future investigation could, in
+principle, extend the grammar and re-examine the ceiling.
 
-\subsection{Stage D universality}
+\subsection{Residual condition universality}
 
-Whether $\StageD$ could ever be brought inside the outer gate for all
-$\gamma$, or whether the IC-local obstruction ($F_2$) is genuinely
-permanent, is open.  The SR-B verdict gives ``partial basis, irreducible
-residue.''  A future program establishing $\Upb \Rightarrow \StageD$
-universally would be a genuine extension.
+Whether the residual condition $\StageD$ could ever be brought inside the
+outer gate for all $\gamma$ --- i.e., whether $\Upb \Rightarrow \StageD$
+universally --- or whether the branch-specific obstruction ($F_2$) is
+genuinely permanent, is open.  The residuality result gives ``partial
+basis, irreducible residue.''  Establishing $\Upb \Rightarrow \StageD$
+universally would be a genuine extension of the current theorem stack.
 
 \subsection{What these open frontiers mean}
 
@@ -1035,10 +1059,10 @@ The reproducibility script is \lean{scripts/verify-lean-build.sh}.
 \subsection{The companion note}
 
 The companion note (\emph{Technical Companion: The Solved Theorem Stack of
-Adequacy Architecture}, \lean{Adequacy\_Theorem\_Companion.tex}) gives the
-same theorems in a concise, theorem-dense format suitable for technically
-fluent readers who need exact Lean names and proof-sketch references without
-the motivating framing of this paper.
+the Adequacy Architecture}) gives the same theorems in a concise,
+theorem-dense format suitable for technically fluent readers who need exact
+Lean names and proof-sketch references without the motivating framing of
+this paper.
 
 The two documents are designed to be read together.  This paper provides
 altitude and conceptual orientation; the companion provides precision and
@@ -1047,23 +1071,22 @@ artifact accountability.
 % =============================================================================
 \section*{Acknowledgements}
 
-All machine-checked proofs are in the repository
-\texttt{adequacy-architecture-lean} (subdirectory
-\texttt{AdequacyArchitecture/}).  Theorem-name index:
-\texttt{THEOREM\_INVENTORY.md}.  Program record:
-\texttt{STATUS\_AND\_HANDOFF.md}.  Mathematical kernel source:
-\texttt{SPEC\_045\_AS1/} (AS1-A through AS1-D).
+All machine-checked proofs are in the \texttt{adequacy-architecture-lean}
+repository.  A full theorem-name index and reproducibility instructions
+are included in that repository.  See~\cite{SpivackAdequacy} for the
+complete program record and the mathematical kernel statement.
 
 % =============================================================================
 \appendix
 
-\section{Theorem table: Program-1 outer gate stack}
+\section{Theorem table: outer gate stack}
 \label{sec:thmtable}
 
 All modules are under
 \texttt{adequacy-architecture-lean/AdequacyArchitecture/}.
-Full name index: \texttt{THEOREM\_INVENTORY.md} (rows SPEC\_036--SPEC\_044).
 All theorems machine-checked; 0 \texttt{sorry}.
+The \textbf{SPEC} column gives the internal development reference
+(for cross-referencing the repository).
 
 \begingroup\footnotesize
 \setlength{\tabcolsep}{3pt}
@@ -1093,13 +1116,13 @@ Thm.~\ref{thm:second-layer} &
 Thm.~\ref{thm:staged-d} &
   \raggedright\texttt{icSpec031\_stageD\_resolution\_pack} &
   \raggedright\texttt{ProgramFiniteAdmissi\-bility.lean} & 031 \\
-SR1 F1 &
+Prop.~\ref{prop:sr-b} $F_1$ &
   \raggedright\texttt{icSpec031\_stageD\_iff\_conjunct\_of\_af1\_\-native\_carrier} &
   \raggedright\texttt{ProgramFiniteAdmissi\-bility.lean} & 043 \\
-SR1 F3 &
+Prop.~\ref{prop:sr-b} $F_3$ &
   \raggedright\texttt{icSpec031\_stageD\_bypass\_conjunct\_of\_af1\_\-standard} &
   \raggedright\texttt{ProgramFiniteAdmissi\-bility.lean} & 043 \\
-SR1 F4 &
+Prop.~\ref{prop:sr-b} $F_4$ &
   \raggedright\texttt{icSpec031\_stageD\_cascade\_conjunct\_of\_af1\_\-standard} &
   \raggedright\texttt{ProgramFiniteAdmissi\-bility.lean} & 043 \\
 \S\ref{sec:maximality} &
@@ -1111,10 +1134,10 @@ SR1 F4 &
 
 \bigskip
 
-\section{Theorem table: foundational arc (earlier landmarks)}
+\section{Theorem table: foundational theorems}
 \label{sec:landmarks}
 
-Selected landmarks from the earlier arc that the outer gate program builds on.
+Selected foundational theorems that the outer gate program builds on.
 All machine-checked; 0 \texttt{sorry}.
 
 \begingroup\footnotesize
@@ -1151,10 +1174,10 @@ All machine-checked; 0 \texttt{sorry}.
 \raggedright\texttt{AbsoluteFrontierRawS1}, \texttt{HFrontier} &
   \raggedright\texttt{AbsoluteFrontier/} & 027 \\
 \raggedright\texttt{every\_map\_has\_fundamental\_residual\_package} &
-  \raggedright\texttt{Instances/WhatMaps\-Forget.lean} & Strata \\
+  \raggedright\texttt{Instances/WhatMaps\-Forget.lean} & (imported) \\
 \raggedright\texttt{lawfulAdequacyArchitecture\_\-pullbackAlongCompare} &
   \raggedright\texttt{Lawful/ComparePullback.lean} & 031 \\
-\raggedright\texttt{icSpec031\_stageD\_resolution\_pack} (Stage A--D) &
+\raggedright\texttt{icSpec031\_stageD\_resolution\_pack} (full four-conjunct decomp.) &
   \raggedright\texttt{Instances/ICCompareRepresentation\-Pullback.lean} & 031 \\
 \raggedright\texttt{CertifiedSummitRowRepresentation} &
   \raggedright\texttt{Portability/Representation\-CalculusRL9.lean} & 033 \\
@@ -1179,10 +1202,10 @@ All machine-checked; 0 \texttt{sorry}.
 
 \bibitem{SpivackAdequacy}
 N.~Spivack.
-\newblock \emph{Adequacy Architecture: Program 1 --- Outer Gate, Layered
-  Certificate Architecture, and Machine-Checked Synthesis}.
-\newblock Adequacy Architecture Project, \texttt{adequacy-architecture-lean} repository, 2026.
-\newblock Source of record: \texttt{specs/IN-PROCESS/SPEC\_045\_AS1/}.
+\newblock \emph{Adequacy Architecture: Outer Gate, Layered Certificate
+  Architecture, and Machine-Checked Synthesis}.
+\newblock Adequacy Architecture Project, \texttt{adequacy-architecture-lean}
+  repository, 2026.
 
 \bibitem{SpivackIC}
 N.~Spivack.
