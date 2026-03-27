@@ -83,7 +83,7 @@
 
 % --- metadata ----------------------------------------------------------------
 \title{\textbf{The Architecture of Outer Admissibility}\\[6pt]
-  \large Why Outer Certificate Worlds Collapse, Layer, and Residualize}
+  \large Unification, Maximality, and Residual Structure in Certificate Worlds}
 \author{Nova Spivack\\[2pt]
   \small Independent Researcher}
 \date{2026-03-27 \quad (machine-checked Lean 4, 0 \texttt{sorry})}
@@ -130,34 +130,28 @@ appendix.
 
 \subsection{The phenomenon}
 
-Almost every formal or applied system that reasons about complex internal
-structure must at some point operate through an external or interface-level
-predicate --- a certificate that claims to stand in for richer content
-without fully exposing it.  This is not a pathology; it is ubiquitous.
+Formal and applied systems routinely rely on outer certificates --- external
+or interface-level predicates that claim to stand in for richer internal
+structure.  These take many forms: \emph{compressed witnesses} that claim
+to capture essential proof content, \emph{abstraction layers} that claim
+to preserve enough structure for downstream reasoning, \emph{quotient and
+interface representations} that project internal distinctions into a coarser
+type, \emph{transport claims} that assert a structure moved along a
+reindexing retains its certificate content, and \emph{upgrade witnesses}
+that present a certified object at one level as certifying a richer level.
 
-\begin{itemize}
-  \item A \emph{compressed witness} claims to capture the essential content
-    of a much richer proof or derivation.
-  \item An \emph{abstraction layer} claims to preserve enough structure for
-    downstream reasoning to proceed faithfully.
-  \item A \emph{quotient or interface representation} projects internal
-    distinctions into a coarser type and claims the projection is sufficient.
-  \item A \emph{transport claim} asserts that a structure moved along a map
-    or reindexing retains its certificate content.
-  \item An \emph{upgrade witness} presents a certified object at one level
-    as a certificate of a richer level.
-\end{itemize}
+In every case, the outer predicate makes the same claim: ``the relevant
+content is here, at this interface, in this form.''  Without a theory of
+outer admissibility, such certificates are under-classified and often
+over-trusted: a pullback display, a branch-native pack, and an upgrade
+witness appear to be three different kinds of outer certificate defining
+three different admissibility worlds.
 
-In every case the outer predicate makes the same kind of claim: it says
-``the relevant content is here, at this interface, in this form.''  Without
-a theory of outer admissibility, such certificates are under-classified
-and often over-trusted.  A pullback display, a branch-native pack, and
-an upgrade witness look like three different kinds of outer certificate.
-The central discovery of this paper is that \emph{they are not}: they are
-forced presentations of one outer gate, and richer content is forced
-upward into higher layers rather than sideways into new primitive modes.
-
-That is the architectural fact this paper proves.
+The central discovery of this paper is that \emph{they are not}.  They are
+forced presentations of a single outer gate.  Richer content does not
+spread sideways into alternative primitive modes --- it is forced upward
+into a layered architecture above the gate.  That is the architectural
+fact this paper proves.
 
 \subsection{The adequacy burden}
 
@@ -274,30 +268,19 @@ compression carrier pullback (through the infinity-compression arm) or
 an involutive compare-map cleaving argument (through the carrier-swap arm),
 each proved as a separate machine-checked theorem~\cite{SpivackAdequacy}.
 
-\subsection{The breadth of the question}
-
-The outer classification problem has breadth beyond the specific instances
-examined.  It governs a wide family of certificate shapes:
-
-\begin{itemize}
-  \item Abstract pullback display certificates along compare maps.
-  \item Finite admissibility presentations with multiple constructor arms.
-  \item Grammar-generated outer classes under declared normal forms.
-  \item Boundary certificates that are sound but fall outside the grammar.
-  \item Functorial structural consequences of admission.
-  \item Residual stronger conditions above both levels that are specific
-    to a particular instantiation branch.
-\end{itemize}
-
-Each of these is a different kind of ``outer certificate.''  The theorem
-stack answers where each kind fits in the architecture.
-
 \subsection{What the architecture really shows}
 
 The deeper import of this program is not taxonomic.  It is that outer
 certificate worlds are \emph{not free}.  They do not consist of independent
 admissibility conditions that one can mix and match.  They have a forced
 architecture, and the forcing is provable.
+
+The governed class is broad: it covers outer certificates built from pullback
+displays along compare maps, finite admissibility presentations with multiple
+arms, grammar-generated classes under declared normal forms, boundary forms
+that are sound but outside the grammar, functorial consequences of admission,
+and residual branch-specific packs above both levels.  The theorem stack
+answers exactly where each kind fits and what it can and cannot do.
 
 Three consequences make this concrete.
 
@@ -366,23 +349,15 @@ Specifically:
 \end{enumerate}
 \end{keybox}
 
-\subsection{Why this is an architectural fact, not a classification exercise}
+\subsection{Three forced levels, not three choices}
 
-The six points above could sound like a tidy taxonomy.  They are not.
-They are a structural impossibility result.
-
-The core message is this: \emph{you cannot define a richer outer
-admissibility condition by composing or lifting from the normal forms and
-exceed the outer gate.}  The grammar-cut maximality theorem says so
-directly.  And you cannot reach the second-layer content by any
-admissibility route --- it is produced canonically \emph{after} admission,
-not as an alternative to it.  And you cannot absorb the branch-specific
-residual content into either layer --- it has a genuine irreducible piece
-that the outer gate alone cannot supply.
-
-This means: the three levels are not three choices.  They are three
+The five points above are not a tidy taxonomy.  They are a structural
+impossibility result.  The three levels are not choices.  They are three
 different kinds of structural content, each forced into its own band by
-the logic of admissibility itself.
+the logic of admissibility: the grammar-cut maximality theorem blocks
+escape from Level~1 by composition, the layering theorem blocks direct
+access to Level~2 from below, and the residuality result blocks absorption
+of Level~3 into either level above.
 
 The three-level architecture:
 \begin{center}
@@ -706,41 +681,18 @@ obtained by projecting from the same witness that gives $\Upb\,\gamma$
 
 \subsection{Why this is structurally important}
 
-The key structural point:
+$\Stwo$ is not a new constructor of $\Gadm$, not grammar-generated, and
+does not imply $\Gadm$ --- it is downstream.  It is canonically produced
+from any $\Upb$ witness without choice or additional hypotheses.
 
-\begin{itemize}
-  \item $\Stwo$ is \emph{not} a new constructor of $\Gadm$.  It is not a
-    new way to be admitted.
-  \item $\Stwo$ is \emph{not} grammar-generated (not NF0--NF4).
-  \item $\Stwo$ does not imply $\Gadm$ (it is downstream).
-  \item $\Stwo$ is canonically produced from any $\Upb$ witness, without
-    choice.
-\end{itemize}
-
-The outer certificate world therefore has a strict vertical structure:
-
-\begin{center}
-\textbf{Level 1} (admission) lies below \textbf{Level 2} (functorial
-consequence).  These are not the same level.
-\end{center}
-
-This matters because it shows that the outer gate is not a dead end.
-Admission at $\gamma$ is the beginning of a richer theory, not just a
-yes/no question.  The architecture has vertical structure: gate below,
-functorial consequence above.
-
-\subsection{What it means to have a second layer}
-
-Before this result, one might have asked: ``once we know a certificate is
-admissible, is there more?''  The answer is yes, and specifically: there is
-a canonical functorial package $\Stwo$ that comes automatically with any
-admission witness.
-
-This has a conceptual implication for how one should think about outer
-certificates.  An outer certificate is not just a stamp of approval.  It
-is an entry ticket to a richer structural world.  The second-layer package
-packages the pullback display together with a host-side summit certificate,
-giving a richer simultaneous view than admission alone provides.
+This means: an outer certificate is not just a stamp of approval.  It is
+an entry ticket to a richer world.  Admission is not a dead end; it is the
+beginning of a richer theory.  The second-layer package combines the
+pullback display with a host-side summit certificate, giving a richer
+simultaneous view than admission alone provides.  The outer certificate
+world has strict vertical structure: Level~1 (admission) below, Level~2
+(its canonical functorial consequence) above.  These are not the same level,
+and nothing in Level~2 can be accessed without first passing through Level~1.
 
 % =============================================================================
 \section{Stage D and the residual band}
@@ -787,54 +739,26 @@ reconstructible from named hypotheses.  $F_2$ is the irreducible residue.
 Without this residuality result, one might conclude: ``the residual
 condition is just another outer admissibility condition; we should add it
 to the gate.''  Proposition~\ref{prop:sr-b} closes this off decisively.
+$\StageD$ is not primitive to the outer gate.  It is not part of the
+second layer.  It is branch-specific extra structure with its own internal
+organization (the four conjuncts) and its own irreducible obstruction
+($F_2$).  The genuinely stronger branch-specific conditions do not sneak
+back into Level~1 or Level~2 --- they live in their own residual band,
+partially accessible via named lemmas, with an irreducible core.
 
-The residual condition $\StageD$ is not primitive to the outer gate.  It
-is not part of the second layer.  It is branch-specific extra structure
-that has its own internal organization (the four conjuncts) and its own
-obstruction ($F_2$).
+The existence of a residual band is not a failure of the architecture;
+it is a finding.  The residual band is the boundary between ``what the
+outer gate governs'' and ``what requires more specific internal structure
+to access.''  The architecture does not claim that $\Upb$ governs
+everything --- it claims that $\Upb$ is the right outer gate at its level
+of structure, and that what lies beyond is classified rather than ignored.
 
-This means the architecture has a clean outer boundary ($\Upb$) and a
-clean second layer ($\Stwo$), and \emph{everything beyond that is
-residual} --- not foreign, not ignored, but structurally downstream
-and branch-specific.
-
-The residuality result is what makes the two-level picture honest: it says
-that the genuinely stronger branch-specific conditions do not sneak back
-into Level~1 or Level~2.  They live in their own residual band, partially
-accessible via named lemmas, with an irreducible core.
-
-\subsection{The residual band and what maps forget}
-
-The residual band is not an ad hoc finding.  It is the outer gate
-manifestation of the general residual principle formalized throughout
-the architecture.
-
-The theorem \lean{every\_map\_has\_fundamental\_residual\_package}
-states that every forgetful morphism has a fundamental residual
-structure --- a machine-checked record of what was lost in the map, what
-still observes it, and what the residual geometry looks like.  This is
-the machine-checked form of the fifth canonical law (``if the burden is
-invisible, suspect the map'').
-
-The irreducible conjunct $F_2$ of the residual condition is a specific
-instance of this principle: the map from the outer gate to the
-infinity-compression architecture forgets exactly the $F_2$ content, and
-that content is what the fundamental residual structure records.
-
-\subsection{The significance of the residual band}
-
-The existence of a residual band is not a failure of the architecture.
-It is a finding.
-
-The architecture is not claiming that $\Upb$ governs everything.  It is
-claiming that $\Upb$ is the right outer gate at its level of structure,
-and that what lies beyond it is branch-specific content with its own
-structural character.  The residuality result locates that content precisely.
-
-This is the deeper picture.  The residual band is the boundary between
-``what the outer gate governs'' and ``what requires more specific internal
-structure to access.''  Knowing where that boundary is, and why it is
-there, is part of the architecture's contribution.
+The general principle underlying this finding is machine-checked throughout
+the architecture: every forgetful morphism has a canonical fundamental
+residual structure recording what was lost and what still observes it.
+$F_2$ is the specific instance of this principle for the
+infinity-compression branch: the map from the outer gate to the
+compression architecture forgets exactly the $F_2$ content.
 
 % =============================================================================
 \section{The complete architecture}
@@ -924,23 +848,14 @@ levels are the minimum that the logic of admissibility forces into existence.
 
 \subsection{What every arrow earns}
 
-The diagram above is not a schematic.  Each connection has a specific
-machine-checked proof:
-
-\begin{description}
-\item[] $\Gadm \iff \Upb$:
-    \lean{program1FiniteGAdm\_iff\_program1Admissibility\-PullbackDisplayWitness}
-  \item[] $\Gadm \Rightarrow \AbsRawSone$:
-    \lean{program1FiniteGAdm\_implies\_exists\_absolute\-FrontierRawS1}
-  \item[] $\Ggen \subseteq \Upb$:
-    \lean{program1\_outer\_grammar\_cut\_maxA}
-  \item[] $\SoneLawful \Rightarrow \text{outer soundness}$:
-    \lean{Program1OuterCertificate\-Sound\_program1Outer\-WinS1LawfulNonempty}
-  \item[] $\Upb \Rightarrow \Stwo$:
-    \lean{program1\_layer2PullbackDisplay\_with\_host\_\-summitFE3\_of\_U\_pullback}
-  \item[] $\StageD$ residuality:
-    \lean{icSpec031\_stageD\_resolution\_pack} + facet lemmas
-\end{description}
+The diagram above is not a schematic.  Three of the arrows carry the full
+weight of the architecture:
+\begin{itemize}
+  \item $\Gadm \iff \Upb$: \lean{program1FiniteGAdm\_iff\_program1Admissibility\-PullbackDisplayWitness}
+  \item $\Ggen \subseteq \Upb$: \lean{program1\_outer\_grammar\_cut\_maxA}
+  \item $\Upb \Rightarrow \Stwo$: \lean{program1\_layer2PullbackDisplay\_with\_host\_\-summitFE3\_of\_U\_pullback}
+\end{itemize}
+The full Lean name list for all arrows is in Appendix~\ref{sec:thmtable}.
 
 % =============================================================================
 \section{Robustness and breadth of applicability}
