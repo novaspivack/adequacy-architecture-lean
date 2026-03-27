@@ -223,11 +223,16 @@ immediately to three more:
     cannot be absorbed into it or into the second layer?
 \end{enumerate}
 
-This paper answers all three questions.  The answers are not three separate
-results.  They are three facets of the same architectural fact:
-\emph{outer certificate worlds do not define multiple admissibility worlds;
-they are forced into one layered architecture with a unique outer gate,
-a derived second layer above it, and a genuine residual band beyond.}
+This paper answers all three questions with a single architectural fact:
+
+\begin{keybox}
+\centering
+\emph{Apparently different outer certificate forms do not define different
+admissibility worlds.  Under disciplined adequacy constraints, they collapse
+to one outer gate, force a derived higher layer above it, and leave stronger
+branch-specific content in a residual band that cannot be absorbed into
+either level.}
+\end{keybox}
 
 % =============================================================================
 \section{Why this is hard and important}
@@ -444,31 +449,20 @@ $\StageD\,\gamma$ & \lean{icSpec031\_stageD\_resolution\_pack} & branch-specific
 \end{tabular}
 \end{center}
 
-\subsection{Prior summit theorem}
+\subsection{Foundational dependencies and scope}
 
-The outer gate program builds on an earlier machine-checked summit theorem:
-\lean{highestReachable\-\_summit\_at}
-(\leanmod{Lawful/FinalConditional\-Summit.lean}) packages the highest
-reachable summit at any carrier as a structured machine-checked object
-$H_{\mathrm{final}}$.  This is the target all outer routes aim to supply.
-The unification theorem (\S\ref{sec:gate}) shows that all three constructor
-arms of $\Gadm$ supply this target through $\Upb$: the three routes to the
-summit are logically equivalent.
+The outer gate program builds on two prior machine-checked results.
+First, the highest reachable summit $H_{\mathrm{final}}$ is packaged as a
+structured object by \lean{highestReachable\-\_summit\_at}
+(\leanmod{Lawful/FinalConditional\-Summit.lean}); the unification theorem
+shows all three constructor arms of $\Gadm$ supply this target through
+$\Upb$.  Second, the residual-geometry library provides the general
+principle that every forgetful morphism has a fundamental residual structure
+--- the machine-checked form of ``if the burden is invisible, suspect the
+map'' --- of which the residual band (\S\ref{sec:residual}) is a specific
+instance.
 
-\subsection{Residual geometry}
-
-The Lean package imports a residual-geometry library formalizing what
-forgetful morphisms lose.  Every forgetful morphism has a canonical
-fundamental residual structure: a machine-checked record of what was lost
-in the map, what still observes it, and what the geometry of the loss
-looks like.  This is the machine-checked form of the diagnostic principle
-``if the burden is invisible, suspect the map,'' and it provides the
-general framework in which the residual band of \S\ref{sec:residual} is
-a specific instance.
-(Lean name: \lean{every\-\_map\-\_has\-\_fundamental\-\_residual\-\_package},
-\leanmod{Instances/WhatMapsForget.lean}.)
-
-\subsection{Scope discipline}
+Scope:
 
 \begin{itemize}
   \item No claim of unconstrained $\forall P\,B$.  An unconditional
@@ -545,17 +539,6 @@ $\AbsRawSone(P,B)$ is the frontier of the adequacy landscape: it says
 the highest reachable summit exists for some concrete predicate--burden pair,
 as formalized in the machine-checked absolute-frontier program~\cite{SpivackAdequacy}.
 
-\subsection{Why the collapse is significant}
-
-Before Theorem~\ref{thm:unification}, one might have said: ``the adequacy
-architecture has three kinds of outer certificates.''  After it, one can
-say: ``there is one outer gate, and these are three ways to enter it.''
-The compression is real.  The three arms were designed to capture different
-structural routes to admissibility.  The theorem says those routes converge.
-
-This is a classification result.  It says: for the disciplined
-outer admissibility world, there is a unique admissibility condition
-in the sense that all finite presentations of it are equivalent.
 
 % =============================================================================
 \section{Maximality and the grammar boundary}
@@ -861,54 +844,33 @@ The full Lean name list for all arrows is in Appendix~\ref{sec:thmtable}.
 \section{Robustness and breadth of applicability}
 \label{sec:robustness}
 
-\subsection{Multiple arms already collapsed}
+\subsection{Why the gate is robust}
 
-The unification result covers a concrete range of admissibility
-presentations already:
+Four structurally heterogeneous admissibility presentations have already
+been shown to collapse to $\Upb$: the infinity-compression pullback arm
+(compression carrier along a constant compare map), two carrier-level
+corpus instantiations (identity and carrier-swap, the latter via involutive
+cleaving), a parity quotient on a three-element type, and the certified
+upgrade witness arm.  Each required a distinct proof; none collapses
+trivially.
 
-\begin{itemize}
-  \item The infinity-compression pullback arm (compression carrier along
-    a constant compare map).
-  \item Two carrier-level corpus instantiations (identity and carrier-swap,
-    the latter proved via an involutive cleaving argument).
-  \item A parity quotient on a three-element type (a strict intermediate
-    quotient on $\mathrm{Fin}\,3$).
-  \item The certified upgrade witness arm (representation-calculus gate).
-\end{itemize}
+Beyond these instances, grammar-cut maximality says the result holds for
+\emph{any} predicate generated by the outer normal-form grammar --- not
+just the specific ones proved above, but the entire closure under NF0--NF3.
+The gate is therefore not the highest specific case found; it is the highest
+provable ceiling within the declared grammar.
 
-These are structurally heterogeneous instances.  That they all collapse to
-$\Upb$ is not obvious from their definitions; each required a distinct
-proof.
+\subsection{Honest boundaries}
 
-\subsection{Why the maximality result is not local}
+The architecture does not claim to govern all outer predicates.  NF4 exists,
+is sound, and is not grammar-generated --- proving the grammar boundary is
+real.  The NF4 finding then provides an independent robustness check: the
+nearest candidate for a broader class was examined and did not force
+expansion.  The grammar boundary is genuine, not accidental.
 
-Grammar-cut maximality says: \emph{any} predicate generated by the outer
-normal-form grammar collapses to $\Upb$.  The grammar is not just about
-the specific instances above.  It is about the closure under NF0--NF3.
-This means the result generalizes beyond the specific instantiations
-proved so far, to all possible grammar-generated predicates.
-
-\subsection{The boundary test}
-
-The NF4 boundary finding provides an independent robustness check.  Before
-claiming that $\Upb$ is the right outer gate, one should ask: is there
-some nearby candidate that would exceed it?  The nearest candidate was
-$\SoneLawful$ (the NF4 win predicate).  That candidate was examined and
-did not force expansion.  This provides evidence that the grammar boundary
-is genuine rather than accidental.
-
-\subsection{Honest scope}
-
-The architecture does not claim to govern all possible outer predicates.
-That claim would be false: NF4 exists and is not grammar-generated.  The
-correct claim is grammar-cut maximality, which is both true and
-informative.
-
-Similarly, the architecture does not claim that the residual condition is
-unreachable or unimportant.  The residuality result says $\StageD$ is
-residual --- it has a partial basis and an irreducible residue.  That is
-an honest characterization of its relationship to the outer gate, not a
-dismissal.
+Equally, the residual condition is not claimed to be unreachable.  It has a
+partial basis and an irreducible residue; it is classified precisely, not
+dismissed.  An honest architecture locates its own limits.
 
 % =============================================================================
 \section{Breadth: what this architecture governs}
@@ -984,13 +946,11 @@ outer gate.
 This means the outer gate theorem is not a statement about one branch.
 It is a statement about the whole three-branch structure.
 
-The halting/semantic branch carries a full semantic faithfulness story:
-\lean{summitReportOf\-\_indexed\-\_master\-\_agreement\-\_consequences}
-(\leanmod{Instances/NEMSSemantic\-FaithfulTransport.lean})
-packages all consequences of master-indexed summit agreement as a single
-bundle.  This is the branch-level analogue of the outer gate: the
-halting/semantic faithfulness story collapses to a single master
-agreement, just as the outer gate collapses to a single $\Upb$.
+The halting/semantic branch carries a full semantic faithfulness story: all
+consequences of master-indexed summit agreement --- agreed summit, summit
+certificate, indexed certificates, forgetful lifts --- collapse to a single
+machine-checked bundle, just as the outer admissibility routes collapse to
+a single $\Upb$.
 
 \subsection{The five canonical laws, re-read}
 
