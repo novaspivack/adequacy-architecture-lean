@@ -149,13 +149,15 @@ without fully exposing it.  This is not a pathology; it is ubiquitous.
 \end{itemize}
 
 In every case the outer predicate makes the same kind of claim: it says
-``the relevant content is here, at this interface, in this form.''  The
-deeper question --- almost never asked directly --- is whether these
-different forms of outer certification are structurally the same thing, or
-genuinely different things.  And if they are structurally the same, what
-is the architecture above that sameness?
+``the relevant content is here, at this interface, in this form.''  Without
+a theory of outer admissibility, such certificates are under-classified
+and often over-trusted.  A pullback display, a branch-native pack, and
+an upgrade witness look like three different kinds of outer certificate.
+The central discovery of this paper is that \emph{they are not}: they are
+forced presentations of one outer gate, and richer content is forced
+upward into higher layers rather than sideways into new primitive modes.
 
-This paper is about those questions.
+That is the architectural fact this paper proves.
 
 \subsection{The adequacy burden}
 
@@ -163,7 +165,7 @@ The Adequacy Architecture formalizes a prior and more fundamental constraint
 on this question.  Before asking \emph{which} outer certificates are honest,
 one must understand what it means for any account to be adequate.
 
-The core insight of the architecture is:
+The core insight, proved as a machine-checked theorem, is:
 
 \begin{keybox}[title=The fundamental theorem (informal)]
   If a system is rich enough, adequacy has a cost.  You cannot freely
@@ -171,41 +173,35 @@ The core insight of the architecture is:
   without that burden reappearing somewhere else.
 \end{keybox}
 
-This is not a philosophical claim.  It is formalized as a hierarchy of
-machine-checked theorems:
+This is not a philosophical claim.  Four proved consequences build the
+foundation on which the outer admissibility theorems rest:
 
-\begin{description}
-  \item[\textbf{No free adequate collapse.}]
+\begin{enumerate}
+  \item \textbf{No free adequate collapse.}
     If a representation is adequate in a non-trivial mode, it cannot erase
-    all burden without paying elsewhere.
-    (\lean{no\-\_free\-\_adequate\-\_collapse},
-    \leanmod{Burden/NoFreeCollapse.lean})
-  \item[\textbf{Burden relocates; it does not vanish.}]
-    Honest simplification moves structural obligations elsewhere.
-    (\lean{burden\_not\_erased\_only\_relocated},
-    \lean{adequacy\_preserving\_drop\_implies\_relocation},
-    \leanmod{Burden/Relocation.lean})
-  \item[\textbf{Route architecture is forced.}]
+    all burden without paying elsewhere~\cite{SpivackAdequacy}.
+
+  \item \textbf{Burden relocates; it does not vanish.}
+    Honest simplification moves structural obligations to another layer or
+    carrier.  The obligations are not deleted; they are relocated.
+
+  \item \textbf{Route architecture is forced.}
     Once adequacy and burden are genuinely entangled, route and finality
-    claims stop being decorative --- they become part of what must be
-    exhibited.  (\lean{master\_conditional\_summit\_ridge\_at},
-    \leanmod{Lawful/MasterConditionalSummit.lean})
-  \item[\textbf{Every map has a fundamental residual structure.}]
-    Any forgetful or compressive morphism has a residual story: what was
-    lost, where did it go, and what still observes it.
-    (\lean{every\_map\_has\-\_fundamental\-\_residual\-\_package},
-    \leanmod{Instances/WhatMapsForget.lean}; residual geometry via
-    the residual-geometry library \lean{rcsOfMap} / \lean{vanishingCriterion})
-  \item[\textbf{The highest reachable summit.}]
-    $H_{\mathrm{final}}$: the highest reachable summit at any carrier is
-    packaged as the theorem \lean{highestReachable\_summit\_at}
-    (\leanmod{Lawful/FinalConditionalSummit.lean}).  This is the
-    target that all outer admissibility routes aim to supply.  The
-    three instantiation branches (halting/semantic, infinity-compression,
-    and continuation) each supply $H_{\mathrm{final}}$ at the standard
-    carrier; the outer gate unification theorem (\S\ref{sec:gate}) shows
-    that all three routes into the gate are equivalent.
-\end{description}
+    claims become part of what must be exhibited.  They cannot be
+    treated as decorative.
+
+  \item \textbf{Every forgetful morphism has a residual story.}
+    Any map that loses information has a canonical residual structure
+    recording what was lost, where it went, and what still observes it.
+    This is the machine-checked form of the diagnostic principle:
+    if the burden is invisible, suspect the map.
+\end{enumerate}
+
+These four facts are not background.  They are the structural reason that
+outer certificate worlds cannot be flat: adequacy forces burden, burden
+forces route architecture, and maps that compress structure have residuals
+that cannot be erased.  The outer gate theorem is the culmination of this
+chain for the specific world of typed outer certificate predicates.
 
 \subsection{The classification problem}
 
@@ -233,8 +229,11 @@ immediately to three more:
     cannot be absorbed into it or into the second layer?
 \end{enumerate}
 
-This paper answers all three questions.  The answers constitute the
-three-level architecture: \emph{collapse, layering, and residuality}.
+This paper answers all three questions.  The answers are not three separate
+results.  They are three facets of the same architectural fact:
+\emph{outer certificate worlds do not define multiple admissibility worlds;
+they are forced into one layered architecture with a unique outer gate,
+a derived second layer above it, and a genuine residual band beyond.}
 
 % =============================================================================
 \section{Why this is hard and important}
@@ -300,26 +299,41 @@ certificate worlds are \emph{not free}.  They do not consist of independent
 admissibility conditions that one can mix and match.  They have a forced
 architecture, and the forcing is provable.
 
-The grammar-cut maximality theorem says: you cannot build a broader outer
-class by composing from the normal forms.  The layering theorem says: you
-cannot reach the second-layer content by any admissibility route --- it is
-produced canonically \emph{after} admission.  The residuality result says:
-you cannot absorb the branch-specific residual into the gate.
+Three consequences make this concrete.
+
+\textbf{The outer gate is not an accident; it is the unique ceiling.}
+Grammar-cut maximality says: once the normal-form grammar is fixed, no
+class generated from it can exceed the unified gate.  This turns
+$\Gadm \equiv \Upb$ from ``one successful unification'' into ``the unique
+admissibility ceiling of the declared certificate world.''  The gate is
+not the highest thing we found --- it is the highest thing there is, within
+the grammar.
+
+\textbf{The second layer cannot be reached from below.}
+No admissibility route --- not pullback display, not branch pack, not
+upgrade witness --- produces the second-layer content directly.  It is
+produced canonically \emph{after} admission, from the same witness, with
+no new hypotheses.  It is what the gate forces into existence above itself.
+This is why the two levels cannot be conflated.
+
+\textbf{The residual content cannot be absorbed into either level.}
+The branch-specific residual condition carries a genuine irreducible piece
+that the outer gate alone cannot supply.  The residuality result locates
+this content precisely and shows it cannot be pushed back down into the
+gate or the second layer.
 
 The practical consequence is diagnostic.  When someone presents an outer
-predicate as an admissibility condition, the architecture asks four
-questions that the predicate must answer:
+predicate as an admissibility condition, the architecture asks:
 \begin{itemize}
   \item Does it imply an absolute frontier certificate? (Gate consequence.)
-  \item Is it grammar-generated?  (Maximality test.)
-  \item Does it unlock a second layer, or is it itself second-layer content?
-    (Layering test.)
-  \item Is it primitive, or residual branch-specific content?  (Residuality
-    test.)
+  \item Is it grammar-generated?  (Ceiling test.)
+  \item Does it unlock a second layer, or is it itself second-layer
+    content?  (Layering test.)
+  \item Is it a primitive outer mode, or residual branch-specific content?
+    (Residuality test.)
 \end{itemize}
-Without answers to these questions, the admissibility claim is not fully
-characterized.  With them, its position in the three-level architecture is
-determined.
+Without answers, the claim is not fully characterized.  With them, its
+position in the forced three-level architecture is determined.
 
 % =============================================================================
 \section{The central discovery}
@@ -449,8 +463,8 @@ $\Upb\,\gamma$ & \lean{Program1AdmissibilityPullbackDisplayWitness} & pullback d
 $\Ggen\,C$ & \lean{Program1GrammarGeneratedOuterGate} & grammar-generated \\
 $\AbsRawSone(P,B)$ & \lean{AbsoluteFrontierRawS1} & absolute frontier S1 certificate \\
 $\SoneLawful\,\gamma$ & \lean{Nonempty (S1LawfulFrontierRow $\gamma$)} & NF4 win predicate \\
-$\Stwo\,\gamma$ & \lean{pullbackDisplay\_with\_host\_summitFE3} & S5 / Level-2 package \\
-$\StageD\,\gamma$ & \lean{icSpec031\_stageD\_resolution\_pack} & IC Stage-D four-conjunct pack \\
+$\Stwo\,\gamma$ & \lean{pullbackDisplay\_with\_host\_summitFE3} & second-layer package \\
+$\StageD\,\gamma$ & \lean{icSpec031\_stageD\_resolution\_pack} & branch-specific residual pack \\
 \hline
 \end{tabular}
 \end{center}
@@ -468,15 +482,16 @@ summit are logically equivalent.
 
 \subsection{Residual geometry}
 
-The Lean package imports a residual-geometry library that formalizes what
-forgetful morphisms lose.  The canonical theorem \lean{every\-\_map\-\_has\-\_fundamental\-\_residual\-\_package}
-(\leanmod{Instances/WhatMapsForget.lean}) states that every forgetful
-morphism has a fundamental residual structure: a machine-checked record
-of what was lost in the map, what still observes it, and what the residual
-geometry looks like.  This is the machine-checked form of the fifth
-canonical law (``if the burden is invisible, suspect the map''), and it
-provides the general framework in which the residual band of
-\S\ref{sec:residual} is a specific instance.
+The Lean package imports a residual-geometry library formalizing what
+forgetful morphisms lose.  Every forgetful morphism has a canonical
+fundamental residual structure: a machine-checked record of what was lost
+in the map, what still observes it, and what the geometry of the loss
+looks like.  This is the machine-checked form of the diagnostic principle
+``if the burden is invisible, suspect the map,'' and it provides the
+general framework in which the residual band of \S\ref{sec:residual} is
+a specific instance.
+(Lean name: \lean{every\-\_map\-\_has\-\_fundamental\-\_residual\-\_package},
+\leanmod{Instances/WhatMapsForget.lean}.)
 
 \subsection{Scope discipline}
 
@@ -894,13 +909,18 @@ dismissed.
 \end{keybox}
 
 \noindent
-Points I--III together say: the outer gate is the unique correct gate.
-Point IV says: the gate is not a dead end but the entrance to a forced
-richer world.  Point V says: the richer branch-specific content is
-accounted for but does not collapse the gate.
+Points I--III together say: the outer gate is the unique correct gate ---
+not the highest thing found, but the highest thing provably reachable
+within the declared grammar.  Point IV says: the gate is not a dead end
+but the entrance to a forced richer world.  Point V says: the richer
+branch-specific content is accounted for but does not collapse the gate.
 
-Together these five points characterize the full structure of outer
-admissibility: \emph{collapse below, forcing above, residuality beyond.}
+Together these five points characterize the full forced structure of outer
+admissibility: \emph{one gate, one derived layer, one residual band.}
+The architecture could not have come out flatter.  Every attempt to flatten
+it --- to conflate the levels, to absorb the residual, to escape the gate
+by grammar composition --- is blocked by a proved theorem.  The three
+levels are the minimum that the logic of admissibility forces into existence.
 
 \subsection{What every arrow earns}
 
@@ -1017,6 +1037,14 @@ form built from the declared grammar of normal forms can escape the outer
 gate.}  The grammar-cut maximality theorem is a completeness result for
 the class of normal-form outer certificates.  Everything built from
 NF0--NF3 is accounted for.
+
+The broader significance is this: this paper is not classifying a menu
+of admissibility witnesses.  It is proving the \emph{architecture of
+outer admissibility itself} --- the forced structure that any sufficiently
+disciplined outer certificate world must have.  The three levels are not
+three outcomes of one particular construction.  They are three kinds of
+structural content that the logic of admissibility forces into three
+distinct bands.
 
 \subsection{Three instantiation branches}
 
