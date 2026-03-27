@@ -10,6 +10,7 @@
   (**`compareLiftAccountAlong_injective_of_injective_pi`**); constant **`π`** remains the sharp collapse regime
   (**`compareLiftAccountAlong_collapses_of_constant`**). Indexed **FE-3** / **`PhantomReindexLayer`** functoriality along
   **`π`** is still **branch-specific** (not packaged here).
+  **SPEC_035:** **`compareLiftAccountAlong_comp`**, **`pullbackAlongCompare_comp`**, **`lawfulAdequacyArchitecture_pullbackAlongCompare_comp`**, **`lawfulAdequacyArchitecture_pullbackAlongCompare_id`** (**cleaving** / host-**`id`** layer); **`lawfulAdequacyArchitecture_pullbackAlongCompare_involutive_pi`** (**π ∘ π = id** iteration, **propositional** rewrite).
 -/
 
 import AdequacyArchitecture.Core.Adequacy
@@ -84,6 +85,37 @@ theorem compareLiftAccountAlong_id (α : Type u) (A : Account α) :
   · intro hx
     exact ⟨x, rfl, hx⟩
 
+/--
+**SPEC_035 / S1a (cleaving):** compare-lift along a composite compare is iteration of compare-lift — functoriality in **`π`**
+at the **`Account`** layer (no injectivity assumptions).
+-/
+theorem compareLiftAccountAlong_comp {δ β α : Type u} (π₁ : δ → β) (π₂ : β → α) (A : Account δ) :
+    compareLiftAccountAlong (π₂ ∘ π₁) A = compareLiftAccountAlong π₂ (compareLiftAccountAlong π₁ A) := by
+  funext a
+  simp only [compareLiftAccountAlong]
+  apply propext
+  constructor
+  · rintro ⟨c, hπ, hA⟩
+    exact ⟨π₁ c, by simpa [Function.comp_apply] using hπ, c, rfl, hA⟩
+  · rintro ⟨b, hbπ, c, hcπ, hA⟩
+    exact ⟨c, by simpa [Function.comp_apply, hcπ] using hbπ, hA⟩
+
+theorem AdequacyPredicates.pullbackAlongCompare_comp {δ β α : Type u} (P : AdequacyPredicates α) (π₁ : δ → β)
+    (π₂ : β → α) : P.pullbackAlongCompare (π₂ ∘ π₁) = (P.pullbackAlongCompare π₂).pullbackAlongCompare π₁ := by
+  rcases P with ⟨adeq⟩
+  dsimp [AdequacyPredicates.pullbackAlongCompare]
+  congr 1
+  funext m A
+  rw [compareLiftAccountAlong_comp]
+
+theorem BurdenPredicates.pullbackAlongCompare_comp {δ β α : Type u} (B : BurdenPredicates α) (π₁ : δ → β)
+    (π₂ : β → α) : B.pullbackAlongCompare (π₂ ∘ π₁) = (B.pullbackAlongCompare π₂).pullbackAlongCompare π₁ := by
+  rcases B with ⟨burden⟩
+  dsimp [BurdenPredicates.pullbackAlongCompare]
+  congr 1
+  funext m A
+  rw [compareLiftAccountAlong_comp]
+
 theorem AdequacyPredicates.pullbackAlongCompare_id (P : AdequacyPredicates α) :
     P.pullbackAlongCompare (id : α → α) = P := by
   rcases P with ⟨adeq⟩
@@ -139,5 +171,39 @@ def lawfulAdequacyArchitecture_pullbackAlongCompare (π : β → α) (arch : Law
   P := arch.P.pullbackAlongCompare π
   B := arch.B.pullbackAlongCompare π
   forces_each := fun m Aβ hP => arch.forces_each m (compareLiftAccountAlong π Aβ) hP
+
+/--
+**SPEC_035 / S1a:** 𝒞-pullback along **`π₂ ∘ π₁`** agrees with the **iterated** pullback along **`π₂`** then **`π₁`**
+(lemma packaging of **`pullbackAlongCompare_comp`** at the lawful row).
+-/
+theorem lawfulAdequacyArchitecture_pullbackAlongCompare_comp {δ β α : Type u} (π₁ : δ → β) (π₂ : β → α)
+    (arch : LawfulAdequacyArchitecture α) :
+    lawfulAdequacyArchitecture_pullbackAlongCompare (π₂ ∘ π₁) arch =
+      lawfulAdequacyArchitecture_pullbackAlongCompare π₁ (lawfulAdequacyArchitecture_pullbackAlongCompare π₂ arch) := by
+  rcases arch with ⟨P, B, forces⟩
+  dsimp only [lawfulAdequacyArchitecture_pullbackAlongCompare]
+  congr 1
+  · exact AdequacyPredicates.pullbackAlongCompare_comp P π₁ π₂
+  · exact BurdenPredicates.pullbackAlongCompare_comp B π₁ π₂
+
+theorem lawfulAdequacyArchitecture_pullbackAlongCompare_id (α : Type u) (arch : LawfulAdequacyArchitecture α) :
+    lawfulAdequacyArchitecture_pullbackAlongCompare (id : α → α) arch = arch := by
+  rcases arch with ⟨P, B, forces⟩
+  dsimp only [lawfulAdequacyArchitecture_pullbackAlongCompare]
+  congr 1
+  · exact AdequacyPredicates.pullbackAlongCompare_id P
+  · exact BurdenPredicates.pullbackAlongCompare_id B
+
+/--
+**SPEC_035 Program 1:** if **`π : α → α`** satisfies **`π ∘ π = id`**, then **two** 𝒞-pullbacks along **`π`**
+undo each other — packaging **`lawfulAdequacyArchitecture_pullbackAlongCompare_comp`** + **`…_id`**.
+
+**Contrast:** the **IC CS-3** **`comp … icCs3 = icCs3`** step is **`rfl`** bookkeeping; here the **outer**
+**`π ∘ π = id`** input is typically a **small extensionality** fact (e.g. **`corpusStrataCarrierSwap_involutive`**).
+-/
+theorem lawfulAdequacyArchitecture_pullbackAlongCompare_involutive_pi {α : Type u} (π : α → α)
+    (hinv : π ∘ π = (id : α → α)) (arch : LawfulAdequacyArchitecture α) :
+    lawfulAdequacyArchitecture_pullbackAlongCompare π (lawfulAdequacyArchitecture_pullbackAlongCompare π arch) = arch := by
+  rw [← lawfulAdequacyArchitecture_pullbackAlongCompare_comp, hinv, lawfulAdequacyArchitecture_pullbackAlongCompare_id]
 
 end AdequacyArchitecture.Lawful

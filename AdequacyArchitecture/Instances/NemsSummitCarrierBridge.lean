@@ -31,7 +31,8 @@
   **Identity compare:** **`nemsSummitCarrierBridgeCompareAlignment_of_id_compare`** (**`hostBundleMap := effectiveProj`**);
   **prodGraph + id:** **`nemsSummitCarrierBridgeCompareAlignment_prodGraph_of_id_compare`** (**`hostBundleMap := b`**);
   **prodGraph + constant compare** (**`∀ x, repr.π x = c`**): **`nemsSummitCarrierBridgeCompareAlignment_prodGraph_of_constant_compare`**
-  (**`hostBundleMap := fun _ => m`** when **`b x = m`**).
+  (**`hostBundleMap := fun _ => m`** when **`b x = m`**). **SPEC_035 Program 1 / Q1:** **`nemsSummitCarrierBridgeCompareAlignment_prodGraph_of_constant_graphMap`**
+  drops the unused constant-**`π`** hypothesis — same **alignment** whenever the **graph map** **`b`** is constant (**`∀ x, b x = m`**), e.g. **corpus Level-2 NV** **`π = corpusStrataCarrierSwap`** (**`nemsCorpusLevel2NvSwap_graphBridge_mkStandard`**).
 
   ## Working Queue item 3 — **section-aware** split pack (no megajoin)
 
@@ -42,9 +43,15 @@
   ## Concrete **`hostBundleMap`** (**`SPEC_032_HM1`**, **`SPEC_032_HM2_NV`**, **`SPEC_032_HM3_Q7A`**)
 
   **`nemsHostBundleMap_corpusStrata_mkStandard`** maps every corpus tag to **`mkStandard`** (SPEC_025). Corpus **Level-1** /
-  **Level-2 NV** use **`π = id`** and **`prodGraph_of_id_compare`**. **IC CS-3** **`icCs3CertifiedFrontierRepresentation`** uses
+  **Level-2 NV (id)** use **`π = id`** and **`prodGraph_of_id_compare`**.   **Level-2 NV (fiber swap)** uses **`π = corpusStrataCarrierSwap`**
+  and **`prodGraph_of_constant_graphMap`** (same constant **`mkStandard`** graph **`b`**). **SPEC_035:** **`comp (swap NV) icCs3`** has **constant**
+  **`π`** into **`⟨1⟩`** (**`nemsIcCs3CompCorpusNvSwap_*`**). **IC CS-3** **`icCs3CertifiedFrontierRepresentation`** uses
   **constant** **`π`** into **`CorpusStrataCarrier`** and **`prodGraph_of_constant_compare`** (**`hostBundleMap`** is the **constant**
-  map **`fun _ => mkStandard`**, matching constant graph **`b`**).
+  map **`fun _ => mkStandard`**, matching constant graph **`b`**). **`SPEC_032_HM4_K9N`:** no genuinely **varying**
+  **`b : γ → HaltingMaster`** at fixed **`(h, hF)`** — **`HaltingAnchoredFaithfulSummitMasterBundle.eq_mkStandard`** (every bundle is
+  **`mkStandard`**), hence   **`nemsSummitCarrierBridge_prodGraph_effectiveProj_eq_fun_const_mkStandard`**. **`SPEC_032_HM5_RK2`:** enlarged
+  **`TaggedHaltingSummitMasterStaging`** + **`nemsSummitCarrierBridgeData_taggedGraph`** — same **`effectiveProj = b`** / FE-3
+  spine with **tag** variation **orthogonal** to **HM4**; see **`TaggedHaltingSummitMasterStaging.lean`** / **`SPEC_032_HM5_RK2_TAGGED_HALTING_SUMMIT_STAGING.md`**.
 -/
 
 import AdequacyArchitecture.Instances.CorpusDischarge
@@ -201,13 +208,13 @@ def nemsSummitCarrierBridgeCompareAlignment_prodGraph_of_id_compare {γ : Type}
     rw [show repr.π x = x from by simpa [Function.id_def] using congrFun hπ x]
 
 /--
-  **ProdGraph + constant compare:** witness **`c`** with **`∀ x, repr.π x = c`** (e.g. **IC CS-3** corpus compare). Take **`b x = m`**;
-  then **`effectiveProj x = b x = m`** on the graph bridge, and **`hostBundleMap := fun _ => m`** matches **`hostBundleMap (repr.π x)`**
-  by **β** (the **`_hπ`** hypothesis is the **caller-supplied** constant-**`π`** certificate; it is **not** needed in the **defeq** proof).
+**ProdGraph + constant graph map:** if **`b x = m`** for all **`x`**, then **`effectiveProj x = m`**, and
+**`hostBundleMap := fun _ => m`** agrees with **`hostBundleMap (repr.π x)`** for **every** compare **`repr.π`**.
+
+This **strictly generalizes** the obsolete constant-**`π`** certificate (the latter was never used in the proof body).
 -/
-def nemsSummitCarrierBridgeCompareAlignment_prodGraph_of_constant_compare
+def nemsSummitCarrierBridgeCompareAlignment_prodGraph_of_constant_graphMap
     {γ α : Type} {repr : CertifiedFrontierRepresentation γ α}
-    (c : α) (_hπ : ∀ x : γ, repr.π x = c)
     (m : HaltingMaster h hF)
     (b : γ → HaltingMaster h hF)
     (hb : ∀ x : γ, b x = m) :
@@ -217,6 +224,22 @@ def nemsSummitCarrierBridgeCompareAlignment_prodGraph_of_constant_compare
     dsimp [NemsSummitCarrierBridgeData.effectiveProj, nemsSummitCarrierBridgeData_prodGraph,
       Function.comp_apply]
     exact hb x
+
+/--
+  **ProdGraph + constant compare:** witness **`c`** with **`∀ x, repr.π x = c`** (e.g. **IC CS-3** corpus compare). Take **`b x = m`**;
+  then **`effectiveProj x = b x = m`** on the graph bridge, and **`hostBundleMap := fun _ => m`** matches **`hostBundleMap (repr.π x)`**
+  for **any** **`π`** with constant **`b`**. The **`c`** / **`_hπ`** arguments are **legacy** surface (**kept** for stable downstream names).
+
+  **Implementation:** **`nemsSummitCarrierBridgeCompareAlignment_prodGraph_of_constant_graphMap`**.
+-/
+def nemsSummitCarrierBridgeCompareAlignment_prodGraph_of_constant_compare
+    {γ α : Type} {repr : CertifiedFrontierRepresentation γ α}
+    (c : α) (_hπ : ∀ x : γ, repr.π x = c)
+    (m : HaltingMaster h hF)
+    (b : γ → HaltingMaster h hF)
+    (hb : ∀ x : γ, b x = m) :
+    NemsSummitCarrierBridgeCompareAlignment (nemsSummitCarrierBridgeData_prodGraph repr b) :=
+  nemsSummitCarrierBridgeCompareAlignment_prodGraph_of_constant_graphMap m b hb
 
 /-!
 ### Corpus **Fin 2** naming (`CorpusStrataCarrier` = `Fin 2`) -/
@@ -593,6 +616,106 @@ theorem nemsSummitSectionAware_pack_corpusLevel2NvId_graph_mkStandard_aligned_in
       certifiedFrontierRepresentation_corpus_nems_level2_nv_id_hasInjectiveCompare
 
 /-!
+### **`SPEC_032_HM2_NV` + SPEC_035** — **Level-2 NV** with **`π = corpusStrataCarrierSwap`** (injective **π**, **≠ `id`**)
+
+Same **`mkStandard`** prodGraph **`b`** as the id corridor; **alignment** uses **`prodGraph_of_constant_graphMap`** — **no** constant-**`π`** certificate.
+-/
+
+abbrev nemsCorpusLevel2NvSwap_graphBridge_mkStandard :
+    NemsSummitCarrierBridgeData h hF certifiedFrontierRepresentation_corpus_nems_level2_nv_swap :=
+  nemsSummitCarrierBridgeData_corpusStrataProdGraph certifiedFrontierRepresentation_corpus_nems_level2_nv_swap
+    (fun _ => HaltingAnchoredFaithfulSummitMasterBundle.mkStandard h hF)
+
+def nemsSummitCarrierBridgeCompareAlignment_corpusLevel2NvSwap_graph_mkStandard :
+    NemsSummitCarrierBridgeCompareAlignment (@nemsCorpusLevel2NvSwap_graphBridge_mkStandard h hF) :=
+  nemsSummitCarrierBridgeCompareAlignment_prodGraph_of_constant_graphMap
+    (HaltingAnchoredFaithfulSummitMasterBundle.mkStandard h hF)
+    (fun _ => HaltingAnchoredFaithfulSummitMasterBundle.mkStandard h hF)
+    (fun _ => rfl)
+
+theorem nemsFe3IndexedPhantomOps_corpusLevel2NvSwap_graph_mkStandard_factors_compare_then_host :
+    indexedPhantomCertificateOps_pullbackAlongDom (@nemsCorpusLevel2NvSwap_graphBridge_mkStandard h hF).effectiveProj
+        (@haltingAnchoredNemsIndexedPhantomOps h hF) =
+      indexedPhantomCertificateOps_pullbackAlongDom certifiedFrontierRepresentation_corpus_nems_level2_nv_swap.π
+        (indexedPhantomCertificateOps_pullbackAlongDom (@nemsHostBundleMap_corpusStrata_mkStandard h hF)
+          (@haltingAnchoredNemsIndexedPhantomOps h hF)) :=
+  nemsFe3IndexedPhantomOps_pullbackAlongDom_align_factors_through_compare_then_host _
+    nemsSummitCarrierBridgeCompareAlignment_corpusLevel2NvSwap_graph_mkStandard
+
+theorem nemsSummitSectionAware_pack_corpusLevel2NvSwap_graph_mkStandard_aligned :
+    AbsoluteFrontierRawS1 icCorpusAlignedNonVacuousFinalAdequacy icCorpusAlignedBurden ∧
+      indexedPhantomCertificateOps_pullbackAlongDom (@nemsCorpusLevel2NvSwap_graphBridge_mkStandard h hF).effectiveProj
+          (@haltingAnchoredNemsIndexedPhantomOps h hF) =
+        indexedPhantomCertificateOps_pullbackAlongDom (@nemsCorpusLevel2NvSwap_graphBridge_mkStandard h hF).i
+          (indexedPhantomCertificateOps_pullbackAlongDom (@nemsCorpusLevel2NvSwap_graphBridge_mkStandard h hF).σ.proj
+            (@haltingAnchoredNemsIndexedPhantomOps h hF)) ∧
+      ForgetfulIndexedCoherent
+        (indexedPhantomCertificateOps_pullbackAlongDom (@nemsCorpusLevel2NvSwap_graphBridge_mkStandard h hF).effectiveProj
+          (@haltingAnchoredNemsIndexedPhantomOps h hF)) ∧
+      ForgetfulAgreementInjects
+        (indexedPhantomCertificateOps_pullbackAlongDom (@nemsCorpusLevel2NvSwap_graphBridge_mkStandard h hF).effectiveProj
+          (@haltingAnchoredNemsIndexedPhantomOps h hF)) ∧
+      indexedPhantomCertificateOps_pullbackAlongDom (@nemsCorpusLevel2NvSwap_graphBridge_mkStandard h hF).effectiveProj
+          (@haltingAnchoredNemsIndexedPhantomOps h hF) =
+        indexedPhantomCertificateOps_pullbackAlongDom certifiedFrontierRepresentation_corpus_nems_level2_nv_swap.π
+          (indexedPhantomCertificateOps_pullbackAlongDom (@nemsHostBundleMap_corpusStrata_mkStandard h hF)
+            (@haltingAnchoredNemsIndexedPhantomOps h hF)) := by
+  let br := @nemsCorpusLevel2NvSwap_graphBridge_mkStandard h hF
+  let align := @nemsSummitCarrierBridgeCompareAlignment_corpusLevel2NvSwap_graph_mkStandard h hF
+  constructor
+  · exact absoluteFrontierRawS1_of_valid_certifiedFrontierRepresentation
+      certifiedFrontierRepresentation_corpus_nems_level2_nv_swap
+      certifiedFrontierRepresentation_corpus_nems_level2_nv_swap_isPullbackDisplay
+  constructor
+  · exact nemsFe3IndexedPhantomOps_carrier_bridge_induces_fe3 br
+  constructor
+  · exact forgetfulIndexedCoherent_of_indexedPhantomCertificateOps_pullbackAlongDom br.effectiveProj _
+      haltingAnchoredNems_forget_coherent
+  constructor
+  · exact forgetfulAgreementInjects_of_indexedPhantomCertificateOps_pullbackAlongDom br.effectiveProj _
+      haltingAnchoredNems_forget_injects
+  · exact nemsFe3IndexedPhantomOps_pullbackAlongDom_align_factors_through_compare_then_host br align
+
+theorem nemsSummitSectionAware_pack_corpusLevel2NvSwap_graph_mkStandard_aligned_injectiveCompareLift :
+    AbsoluteFrontierRawS1 icCorpusAlignedNonVacuousFinalAdequacy icCorpusAlignedBurden ∧
+      indexedPhantomCertificateOps_pullbackAlongDom (@nemsCorpusLevel2NvSwap_graphBridge_mkStandard h hF).effectiveProj
+          (@haltingAnchoredNemsIndexedPhantomOps h hF) =
+        indexedPhantomCertificateOps_pullbackAlongDom (@nemsCorpusLevel2NvSwap_graphBridge_mkStandard h hF).i
+          (indexedPhantomCertificateOps_pullbackAlongDom (@nemsCorpusLevel2NvSwap_graphBridge_mkStandard h hF).σ.proj
+            (@haltingAnchoredNemsIndexedPhantomOps h hF)) ∧
+      ForgetfulIndexedCoherent
+        (indexedPhantomCertificateOps_pullbackAlongDom (@nemsCorpusLevel2NvSwap_graphBridge_mkStandard h hF).effectiveProj
+          (@haltingAnchoredNemsIndexedPhantomOps h hF)) ∧
+      ForgetfulAgreementInjects
+        (indexedPhantomCertificateOps_pullbackAlongDom (@nemsCorpusLevel2NvSwap_graphBridge_mkStandard h hF).effectiveProj
+          (@haltingAnchoredNemsIndexedPhantomOps h hF)) ∧
+      indexedPhantomCertificateOps_pullbackAlongDom (@nemsCorpusLevel2NvSwap_graphBridge_mkStandard h hF).effectiveProj
+          (@haltingAnchoredNemsIndexedPhantomOps h hF) =
+        indexedPhantomCertificateOps_pullbackAlongDom certifiedFrontierRepresentation_corpus_nems_level2_nv_swap.π
+          (indexedPhantomCertificateOps_pullbackAlongDom (@nemsHostBundleMap_corpusStrata_mkStandard h hF)
+            (@haltingAnchoredNemsIndexedPhantomOps h hF)) ∧
+      Function.Injective (compareLiftAccountAlong certifiedFrontierRepresentation_corpus_nems_level2_nv_swap.π) := by
+  let br := @nemsCorpusLevel2NvSwap_graphBridge_mkStandard h hF
+  let align := @nemsSummitCarrierBridgeCompareAlignment_corpusLevel2NvSwap_graph_mkStandard h hF
+  constructor
+  · exact absoluteFrontierRawS1_of_valid_certifiedFrontierRepresentation
+      certifiedFrontierRepresentation_corpus_nems_level2_nv_swap
+      certifiedFrontierRepresentation_corpus_nems_level2_nv_swap_isPullbackDisplay
+  constructor
+  · exact nemsFe3IndexedPhantomOps_carrier_bridge_induces_fe3 br
+  constructor
+  · exact forgetfulIndexedCoherent_of_indexedPhantomCertificateOps_pullbackAlongDom br.effectiveProj _
+      haltingAnchoredNems_forget_coherent
+  constructor
+  · exact forgetfulAgreementInjects_of_indexedPhantomCertificateOps_pullbackAlongDom br.effectiveProj _
+      haltingAnchoredNems_forget_injects
+  constructor
+  · exact nemsFe3IndexedPhantomOps_pullbackAlongDom_align_factors_through_compare_then_host br align
+  · exact CertifiedFrontierRepresentation.compareLiftAccountAlong_injective_of_repr_injective
+      certifiedFrontierRepresentation_corpus_nems_level2_nv_swap
+      certifiedFrontierRepresentation_corpus_nems_level2_nv_swap_hasInjectiveCompare
+
+/-!
 ### **`SPEC_032_HM3_Q7A`** — **IC CS-3** constant compare **`π`**, same **`mkStandard`** graph (no injective compare-lift)
 
 **`icCs3CertifiedFrontierRepresentation`:** **`γ = icNemsSpineCompressionCarrier`**, **`α = CorpusStrataCarrier`**, **`π`** constant.
@@ -656,5 +779,91 @@ theorem nemsSummitSectionAware_pack_icCs3_graph_mkStandard_aligned :
   · exact forgetfulAgreementInjects_of_indexedPhantomCertificateOps_pullbackAlongDom br.effectiveProj _
       haltingAnchoredNems_forget_injects
   · exact nemsFe3IndexedPhantomOps_pullbackAlongDom_align_factors_through_compare_then_host br align
+
+/-!
+### **SPEC_035 Program 1 / S1a** — **`comp (corpus Level-2 NV swap) icCs3`**: **constant** compare into **`⟨1⟩`**, **`mkStandard`** graph
+
+**`π = corpusStrataCarrierSwap ∘ compareToCorpus`** lands in **`⟨1, by decide⟩`** on every spine point (**`icCs3CompCorpusNvSwapCertifiedFrontierRepresentation_π_apply`**); **PI1** / **SA1** parallel the **HM3** line with host tag **`⟨1⟩`**.
+
+**No** **`nemsSummitSectionAware_pack_icCs3CompCorpusNvSwap_graph_mkStandard_aligned_injectiveCompareLift`:** compare is **not** injective on the compression carrier — **`icCs3CompCorpusNvSwapCertifiedFrontierRepresentation_not_injectiveCompare`** (same obstruction class as **`icCs3CertifiedFrontierRepresentation_not_injectiveCompare`** / **HM3** **aligned-only** line).
+-/
+
+abbrev nemsIcCs3CompCorpusNvSwap_graphBridge_mkStandard :
+    NemsSummitCarrierBridgeData h hF icCs3CompCorpusNvSwapCertifiedFrontierRepresentation :=
+  nemsSummitCarrierBridgeData_prodGraph icCs3CompCorpusNvSwapCertifiedFrontierRepresentation
+    (fun _ => HaltingAnchoredFaithfulSummitMasterBundle.mkStandard h hF)
+
+def nemsSummitCarrierBridgeCompareAlignment_icCs3CompCorpusNvSwap_graph_mkStandard :
+    NemsSummitCarrierBridgeCompareAlignment (@nemsIcCs3CompCorpusNvSwap_graphBridge_mkStandard h hF) :=
+  nemsSummitCarrierBridgeCompareAlignment_prodGraph_of_constant_compare
+    (⟨1, by decide⟩ : CorpusStrataCarrier)
+    icCs3CompCorpusNvSwapCertifiedFrontierRepresentation_π_apply
+    (HaltingAnchoredFaithfulSummitMasterBundle.mkStandard h hF)
+    (fun _ => HaltingAnchoredFaithfulSummitMasterBundle.mkStandard h hF)
+    (fun _ => rfl)
+
+theorem nemsFe3IndexedPhantomOps_icCs3CompCorpusNvSwap_graph_mkStandard_factors_compare_then_host :
+    indexedPhantomCertificateOps_pullbackAlongDom (@nemsIcCs3CompCorpusNvSwap_graphBridge_mkStandard h hF).effectiveProj
+        (@haltingAnchoredNemsIndexedPhantomOps h hF) =
+      indexedPhantomCertificateOps_pullbackAlongDom icCs3CompCorpusNvSwapCertifiedFrontierRepresentation.π
+        (indexedPhantomCertificateOps_pullbackAlongDom (@nemsHostBundleMap_corpusStrata_mkStandard h hF)
+          (@haltingAnchoredNemsIndexedPhantomOps h hF)) :=
+  nemsFe3IndexedPhantomOps_pullbackAlongDom_align_factors_through_compare_then_host _
+    nemsSummitCarrierBridgeCompareAlignment_icCs3CompCorpusNvSwap_graph_mkStandard
+
+theorem nemsSummitSectionAware_pack_icCs3CompCorpusNvSwap_graph_mkStandard_aligned :
+    AbsoluteFrontierRawS1 icNativeCompressionLawfulArchitecture_cs3_pullback.P
+      icNativeCompressionLawfulArchitecture_cs3_pullback.B ∧
+      indexedPhantomCertificateOps_pullbackAlongDom (@nemsIcCs3CompCorpusNvSwap_graphBridge_mkStandard h hF).effectiveProj
+          (@haltingAnchoredNemsIndexedPhantomOps h hF) =
+        indexedPhantomCertificateOps_pullbackAlongDom (@nemsIcCs3CompCorpusNvSwap_graphBridge_mkStandard h hF).i
+          (indexedPhantomCertificateOps_pullbackAlongDom (@nemsIcCs3CompCorpusNvSwap_graphBridge_mkStandard h hF).σ.proj
+            (@haltingAnchoredNemsIndexedPhantomOps h hF)) ∧
+      ForgetfulIndexedCoherent
+        (indexedPhantomCertificateOps_pullbackAlongDom (@nemsIcCs3CompCorpusNvSwap_graphBridge_mkStandard h hF).effectiveProj
+          (@haltingAnchoredNemsIndexedPhantomOps h hF)) ∧
+      ForgetfulAgreementInjects
+        (indexedPhantomCertificateOps_pullbackAlongDom (@nemsIcCs3CompCorpusNvSwap_graphBridge_mkStandard h hF).effectiveProj
+          (@haltingAnchoredNemsIndexedPhantomOps h hF)) ∧
+      indexedPhantomCertificateOps_pullbackAlongDom (@nemsIcCs3CompCorpusNvSwap_graphBridge_mkStandard h hF).effectiveProj
+          (@haltingAnchoredNemsIndexedPhantomOps h hF) =
+        indexedPhantomCertificateOps_pullbackAlongDom icCs3CompCorpusNvSwapCertifiedFrontierRepresentation.π
+          (indexedPhantomCertificateOps_pullbackAlongDom (@nemsHostBundleMap_corpusStrata_mkStandard h hF)
+            (@haltingAnchoredNemsIndexedPhantomOps h hF)) := by
+  let br := @nemsIcCs3CompCorpusNvSwap_graphBridge_mkStandard h hF
+  let align := @nemsSummitCarrierBridgeCompareAlignment_icCs3CompCorpusNvSwap_graph_mkStandard h hF
+  constructor
+  · exact absoluteFrontierRawS1_of_valid_certifiedFrontierRepresentation
+      icCs3CompCorpusNvSwapCertifiedFrontierRepresentation
+      icCs3CompCorpusNvSwapCertifiedFrontierRepresentation_isPullbackDisplay
+  constructor
+  · exact nemsFe3IndexedPhantomOps_carrier_bridge_induces_fe3 br
+  constructor
+  · exact forgetfulIndexedCoherent_of_indexedPhantomCertificateOps_pullbackAlongDom br.effectiveProj _
+      haltingAnchoredNems_forget_coherent
+  constructor
+  · exact forgetfulAgreementInjects_of_indexedPhantomCertificateOps_pullbackAlongDom br.effectiveProj _
+      haltingAnchoredNems_forget_injects
+  · exact nemsFe3IndexedPhantomOps_pullbackAlongDom_align_factors_through_compare_then_host br align
+
+/-!
+### **`SPEC_032_HM4_K9N`** — **no** varying **`HaltingMaster`** on **`γ`** (bundle subsingleton / **`mkStandard`** collapse)
+
+**`HaltingAnchoredFaithfulSummitMasterBundle.eq_mkStandard`** (**`NEMSSemanticFaithfulSummitMaster`**) forces **every** inhabitant at
+fixed **`(h, hF)`** to **`mkStandard`**. So **any** prodGraph **`b : γ → HaltingMaster`** is extensionally **`fun _ => mkStandard`**
+(**`eqFun_const_mkStandard`**), and **graph** **`effectiveProj`** collapses accordingly — not an implementation gap in the bridge,
+but a **spine-level** uniqueness fact for the SPEC_025 master **`Type`** package.
+-/
+
+theorem nemsSummitCarrierBridge_prodGraph_effectiveProj_eq_mkStandard {γ α : Type}
+    (repr : CertifiedFrontierRepresentation γ α) (b : γ → HaltingMaster h hF) (x : γ) :
+    (nemsSummitCarrierBridgeData_prodGraph repr b).effectiveProj x = mkStandard h hF := by
+  dsimp [NemsSummitCarrierBridgeData.effectiveProj, nemsSummitCarrierBridgeData_prodGraph, Function.comp_apply]
+  exact eq_mkStandard (b x)
+
+theorem nemsSummitCarrierBridge_prodGraph_effectiveProj_eq_fun_const_mkStandard {γ α : Type}
+    (repr : CertifiedFrontierRepresentation γ α) (b : γ → HaltingMaster h hF) :
+    (nemsSummitCarrierBridgeData_prodGraph repr b).effectiveProj = fun _ => mkStandard h hF :=
+  funext fun x => nemsSummitCarrierBridge_prodGraph_effectiveProj_eq_mkStandard repr b x
 
 end AdequacyArchitecture.Instances

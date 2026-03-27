@@ -12,6 +12,8 @@
   Cite **`as_fourfold_core b`** and **`faithful_nems_semantic_remainder_at_unit`** separately (see **`SPEC_025_YG2`**).
 
   **Option 2:** **`SPEC_025_YG2`** § *Official composition API*.
+
+  **SPEC_032 HM4_K9N:** **`eq_mkStandard`** — at fixed **`(h, hF)`**, **only one** summit master bundle up to equality (**`mkStandard`**); see **`SPEC_032_HM4_K9N_NEMS_MASTER_BUNDLE_SUBSINGLETON_SPINE.md`**.
 -/
 
 import AdequacyArchitecture.Instances.NEMSFinalSummitSemanticGlue
@@ -112,6 +114,34 @@ theorem to_indexed_canonical_certificate_eq_indexed_canonical
     (b : HaltingAnchoredFaithfulSummitMasterBundle h hF) :
     to_indexed_canonical_certificate b.summitCert = indexed_canonical_certificate b :=
   rfl
+
+/--
+  **SPEC_032 (HM4 prerequisite):** **`summit_agrees`** forces **`summitCert`** to **`summitStandard`**.
+-/
+theorem summitCert_eq_summitStandard (b : HaltingAnchoredFaithfulSummitMasterBundle h hF) :
+    b.summitCert = NEMSHaltingSummitSemanticCertificate.summitStandard h hF :=
+  NEMSHaltingSummitSemanticCertificate.eq_of_summitTracked_eq b.summit_agrees
+
+/--
+  At fixed **`(h, hF)`**, **every** halting-anchored faithful summit master bundle equals **`mkStandard h hF`**:
+  **`summit_agrees`** pins **`summitCert`** to **`summitStandard`**, and the remaining **`Prop`** fields agree with
+  **`mkStandard`** by proof irrelevance after **`subst`**. Hence **no** genuinely **distinct** pairs in
+  **`HaltingAnchoredFaithfulSummitMasterBundle h hF`** — see **`SPEC_032_HM4_K9N`**.
+-/
+theorem eq_mkStandard (b : HaltingAnchoredFaithfulSummitMasterBundle h hF) :
+    b = mkStandard h hF := by
+  rcases b with ⟨lc, sc, tw, sa⟩
+  have hsc : sc = NEMSHaltingSummitSemanticCertificate.summitStandard h hF :=
+    NEMSHaltingSummitSemanticCertificate.eq_of_summitTracked_eq sa
+  subst hsc
+  dsimp only [mkStandard]
+
+/--
+  **Corollary:** any **`γ`-indexed** family of master bundles is **extensionally** the **constant** **`mkStandard`** map.
+-/
+theorem eqFun_const_mkStandard {γ : Type} (b : γ → HaltingAnchoredFaithfulSummitMasterBundle h hF) :
+    b = fun _ => mkStandard h hF :=
+  funext fun x => eq_mkStandard (b x)
 
 end HaltingAnchoredFaithfulSummitMasterBundle
 

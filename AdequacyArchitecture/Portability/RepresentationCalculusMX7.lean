@@ -54,6 +54,21 @@ structure CertifiedUpgradeWitness (α : Type u) where
 def CertifiedUpgradeWitness.toCertifiedFrontierRow (w : CertifiedUpgradeWitness α) : CertifiedFrontierRow α :=
   ⟨w.base.arch, w.summitTagged, w.summit_lawful_sameAdequacy, w.fe3⟩
 
+/--
+**SPEC_030 / SPEC_033 — canonical reverse:** every **`CertifiedFrontierRow`** is definitionally the **Stage G upgrade**
+packaging of its **`𝒞` + summit + FE-3** fields (**`SummitContractBase.ofLawful row.lawful`**).
+-/
+def certifiedUpgradeWitness_of_certifiedFrontierRow (row : CertifiedFrontierRow α) : CertifiedUpgradeWitness α where
+  base := SummitContractBase.ofLawful row.lawful
+  summitTagged := row.summitTagged
+  summit_lawful_sameAdequacy := row.summit_lawful_sameAdequacy
+  fe3 := row.fe3
+
+@[simp]
+theorem certifiedUpgradeWitness_of_certifiedFrontierRow_toCertifiedFrontierRow (row : CertifiedFrontierRow α) :
+    (certifiedUpgradeWitness_of_certifiedFrontierRow row).toCertifiedFrontierRow = row :=
+  rfl
+
 /-- **Layer B (∂ RawS1):** certified upgrade ⇒ **`AbsoluteFrontierRawS1`** for **`base.arch`**. -/
 theorem absoluteFrontierRawS1_of_certifiedUpgradeWitness (w : CertifiedUpgradeWitness α) :
     AbsoluteFrontierRawS1 w.base.arch.P w.base.arch.B :=

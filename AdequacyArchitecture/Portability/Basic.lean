@@ -17,6 +17,8 @@ import AdequacyArchitecture.Portability.CorpusConditionalRidgeFrontier
 import AdequacyArchitecture.Portability.CertifiedFrontierRow
 import AdequacyArchitecture.Portability.RepresentationCalculusMX7
 import AdequacyArchitecture.Portability.SummitRowRepresentation
+import AdequacyArchitecture.Portability.RepresentationCalculusRL9
+import AdequacyArchitecture.Portability.Spec034ProgramClosureLaw
 
 namespace AdequacyArchitecture.Portability
 

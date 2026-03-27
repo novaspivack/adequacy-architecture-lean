@@ -9,6 +9,7 @@
 -/
 
 import AdequacyArchitecture.Instances.CorpusDischarge
+import AdequacyArchitecture.Lawful.ComparePullback
 import AdequacyArchitecture.Lawful.CompletedStratified
 import AdequacyArchitecture.Toy.Fin2Model
 
@@ -43,5 +44,19 @@ theorem corpus_toy_ridge_cascade_witness :
 theorem corpus_toy_ridge_bridgeable :
     RidgeBridgeable corpusToyCompletedStratifiedLawfulAdequacyArchitecture :=
   toy_ridgeBridgeable
+
+/--
+**SPEC_035 Program 1 / S1a:** **involutive cleaving** on **`CorpusStrataCarrier`** — **two** 𝒞-pullbacks along
+**`corpusStrataCarrierSwap`** cancel.
+
+**Proof engine:** **`lawfulAdequacyArchitecture_pullbackAlongCompare_involutive_pi`** + **`corpusStrataCarrierSwap_involutive`**
+— **not** the definitional **`rfl`** collapse of **`icCs3CertifiedFrontierRepresentation_eq_comp_corpus_nems_level2_nv_id`**.
+-/
+theorem lawfulAdequacyArchitecture_pullbackAlongCompare_corpusStrataCarrierSwap_twice
+    (arch : LawfulAdequacyArchitecture CorpusStrataCarrier) :
+    lawfulAdequacyArchitecture_pullbackAlongCompare corpusStrataCarrierSwap
+        (lawfulAdequacyArchitecture_pullbackAlongCompare corpusStrataCarrierSwap arch) = arch :=
+  lawfulAdequacyArchitecture_pullbackAlongCompare_involutive_pi corpusStrataCarrierSwap
+    corpusStrataCarrierSwap_involutive arch
 
 end AdequacyArchitecture.Instances

@@ -5,7 +5,7 @@ lake-packages/
 # Editor
 .DS_Store
 
-# LaTeX (paper/)
+# LaTeX (paper/ and papers/; PDFs are tracked)
 **/paper/*.aux
 **/paper/*.fdb_latexmk
 **/paper/*.fls
@@ -13,3 +13,11 @@ lake-packages/
 **/paper/*.out
 **/paper/*.toc
 **/paper/*.synctex.gz
+**/papers/**/*.aux
+**/papers/**/*.fdb_latexmk
+**/papers/**/*.fls
+**/papers/**/*.log
+**/papers/**/*.out
+**/papers/**/*.toc
+**/papers/**/*.synctex.gz
+**/*synctex(busy)*

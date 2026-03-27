@@ -250,4 +250,34 @@ theorem haltingAnchoredNems_nonempty_phantomReindex_pullbackAlongDom
         (indexedPhantomCertificateOps_pullbackAlongDom f (@haltingAnchoredNemsIndexedPhantomOps h hF))) :=
   ⟨haltingAnchoredNems_phantomReindex_pullbackAlongDom f⟩
 
+/--
+**`SPEC_035` Program 1 — `PROGRAM1_WORK_QUEUE` WQ-Q3b (advisor 2026-03-24):** **NEMS branch transport** packages the
+**FE-3 forgetful fragment** of the **S5** **`summitFE3_joint_semantic_law`** pattern — **`ForgetfulIndexedCoherent` ∧
+`ForgetfulAgreementInjects`** — for **any** bundle-side pullback
+**`indexedPhantomCertificateOps_pullbackAlongDom f haltingAnchoredNemsIndexedPhantomOps`**.
+
+**Contrast (`PROGRAM1_S5_MASTER_SWIPE_TEST` — Outcome discriminator):** **`CertifiedFrontierRow`** hosts in
+**`pullbackDisplay_with_host_summitFE3`** carry **`fe3TrivialUnitCore`** (**`Unit`** FE-3 slot). **NEMS-native**
+**`haltingAnchoredNemsIndexedPhantomOps`** carries **nontrivial** halting-anchored certificates; this lemma exposes
+that **geometry** **stable** under **`pullbackAlongDom`**.
+
+**Advisor posture:** **Outcome 3** (primary falsification target) — **do not** read this as **`U_cert_pack ⇒ U_pullback`**; it is
+**parallel** FE-3 mechanism fact **alongside** compare-pullback display (**honest `U*`** / finite-**`G_adm`** pressure).
+
+**Proof:** same spine as **`haltingAnchoredNems_forgetful_indexedPhantomOps_pullbackAlongDom`** (**`by`**
+elaboration pins **FE-3** **`Sort`** parameters; a bare **`:=` re-export** can leave **stuck** universe metas).
+-/
+theorem program1_wqQ3b_nemsBranchTransport_forgetfulJointAlongDom
+    {h : HFinalFrameworkWithNEMAnchoredGlue} {hF : h.F₀ = haltingFramework}
+    {B' : Type} (f : B' → HaltingAnchoredFaithfulSummitMasterBundle h hF) :
+    ForgetfulIndexedCoherent
+        (indexedPhantomCertificateOps_pullbackAlongDom f (@haltingAnchoredNemsIndexedPhantomOps h hF)) ∧
+      ForgetfulAgreementInjects
+        (indexedPhantomCertificateOps_pullbackAlongDom f (@haltingAnchoredNemsIndexedPhantomOps h hF)) := by
+  refine And.intro ?_ ?_
+  · exact forgetfulIndexedCoherent_of_indexedPhantomCertificateOps_pullbackAlongDom f _
+      haltingAnchoredNems_forget_coherent
+  · exact forgetfulAgreementInjects_of_indexedPhantomCertificateOps_pullbackAlongDom f _
+      haltingAnchoredNems_forget_injects
+
 end AdequacyArchitecture.Instances

@@ -21,10 +21,15 @@
   **Faithful NEMS (`NemS.Framework`):** `NEMSFaithful.lean` — `Outer.ReflexiveLayer Framework`. **Level 3 bridge core**
   on the native index carrier: `NEMSFrameworkBridgeRecord.lean` (`nemsFrameworkNative_*`; two-point spine, not
   `Truth`/`diagonal`-aligned finality).
+
+  **SPEC_035 Program 1 / S1a:** full lawful row stability under **`corpusStrataCarrierSwap`** —
+  **`corpusNemsFin2NvLawfulArchitecture_pullbackAlong_corpusStrataCarrierSwap`** (via **`LawfulAdequacyArchitecture.mk.injEq`**), for
+  **`isPullbackDisplay_comp_iff_of_pulledBackInner`** with **IC** + corpus **swap** outer.
 -/
 
 import AdequacyArchitecture.Instances.CorpusDischarge
 import AdequacyArchitecture.Instances.CorpusLawfulRepresentation
+import AdequacyArchitecture.Lawful.ComparePullback
 import AdequacyArchitecture.Burden.IrreducibleAdequacy
 import AdequacyArchitecture.Lawful.FinalConditionalSummit
 import AdequacyArchitecture.Lawful.LawfulStructures
@@ -35,6 +40,7 @@ import AdequacyArchitecture.Toy.Fin2Model
 
 namespace AdequacyArchitecture.Instances
 
+open AdequacyArchitecture
 open AdequacyArchitecture.Burden
 open AdequacyArchitecture.Lawful
 open AdequacyArchitecture.Lawful.FinalConditionalSummit
@@ -205,5 +211,68 @@ theorem corpusNemsFin2Nv_universal_irreducible_adequacy :
     UniversalIrreducibleAdequacyConjecture CorpusStrataCarrier corpusNemsFin2NonVacuousFinalAdequacy
       corpusNemsFin2Burden :=
   universal_irreducible_adequacy_lawful corpusNemsFin2NvLawfulArchitecture
+
+/-! ### SPEC_035 — compare-lift along **`corpusStrataCarrierSwap`** (nontrivial **S1a** display on corpus corridor) -/
+
+theorem compareLiftAccountAlong_corpusStrataCarrierSwap (A : Account CorpusStrataCarrier) (i : CorpusStrataCarrier) :
+    compareLiftAccountAlong corpusStrataCarrierSwap A i = A (corpusStrataCarrierSwap i) := by
+  dsimp [compareLiftAccountAlong]
+  apply propext
+  constructor
+  · rintro ⟨b, hbπ, hAb⟩
+    have hb_eq := corpusStrataCarrierSwap_symm hbπ
+    subst hb_eq
+    exact hAb
+  · intro hAi
+    refine ⟨corpusStrataCarrierSwap i, ?_, hAi⟩
+    simpa [Function.comp_apply] using congrFun corpusStrataCarrierSwap_involutive i
+
+theorem corpusNemsFin2NonVacuousFinalAdequacy_pullbackAlong_corpusStrataCarrierSwap :
+    corpusNemsFin2NonVacuousFinalAdequacy.pullbackAlongCompare corpusStrataCarrierSwap =
+      corpusNemsFin2NonVacuousFinalAdequacy := by
+  dsimp [AdequacyPredicates.pullbackAlongCompare]
+  unfold corpusNemsFin2NonVacuousFinalAdequacy
+  dsimp
+  congr 1
+  funext m A
+  match m with
+  | .repr => rfl
+  | .cert => rfl
+  | .obs => rfl
+  | .route => rfl
+  | .cont => rfl
+  | .final =>
+      simp only [compareLiftAccountAlong_corpusStrataCarrierSwap]
+      dsimp only [corpusStrataCarrierSwap]
+      exact congrArg Not (propext (Iff.intro Eq.symm Eq.symm))
+
+theorem corpusNemsFin2Burden_pullbackAlong_corpusStrataCarrierSwap :
+    corpusNemsFin2Burden.pullbackAlongCompare corpusStrataCarrierSwap = corpusNemsFin2Burden := by
+  dsimp [BurdenPredicates.pullbackAlongCompare, corpusNemsFin2Burden, relocDemoBurden]
+  congr 1
+  funext m A
+  match m with
+  | .sem =>
+      simp only [compareLiftAccountAlong_corpusStrataCarrierSwap]
+      dsimp only [corpusStrataCarrierSwap]
+      exact congrArg Not (propext (Iff.intro Eq.symm Eq.symm))
+  | .sel => rfl
+  | .res => rfl
+  | .glue => rfl
+  | .cont => rfl
+  | .route => rfl
+
+/--
+**SPEC_035 Program 1 / S1a:** the **Level-2 NV** corpus **`LawfulAdequacyArchitecture`** is **fixed** by 𝒞-pullback along
+**`corpusStrataCarrierSwap`** (not just **`P,B`** — the **`forces_each`** linkage agrees via **`compareLift`** involution).
+-/
+theorem corpusNemsFin2NvLawfulArchitecture_pullbackAlong_corpusStrataCarrierSwap :
+    lawfulAdequacyArchitecture_pullbackAlongCompare corpusStrataCarrierSwap corpusNemsFin2NvLawfulArchitecture =
+      corpusNemsFin2NvLawfulArchitecture := by
+  dsimp only [lawfulAdequacyArchitecture_pullbackAlongCompare, corpusNemsFin2NvLawfulArchitecture]
+  rw [LawfulAdequacyArchitecture.mk.injEq]
+  refine And.intro ?_ ?_
+  · exact corpusNemsFin2NonVacuousFinalAdequacy_pullbackAlong_corpusStrataCarrierSwap
+  · exact corpusNemsFin2Burden_pullbackAlong_corpusStrataCarrierSwap
 
 end AdequacyArchitecture.Instances

@@ -7,7 +7,8 @@
   **`universal_irreducible_adequacy_lawful`** (**no** raw **`∀P,B`**, **no** native **`CertifiedFrontierRow γ`**).
 
   **Worked examples:** identity compare on **`CorpusStrataCarrier`** (NEMS **Level 1** row; **Level 2** non-vacuous-final /
-  **IC CS-3 aligned** row); nontrivial compare in **`ICCompareRepresentationPullback.lean`** (CS-3 pullback).
+    **IC CS-3 aligned** row); **fiber swap** **`corpusStrataCarrierSwap`** on the **same** Level-2 NV certified host (**SPEC_035 Q1**);
+    nontrivial compare in **`ICCompareRepresentationPullback.lean`** (CS-3 pullback).
 
   **Ceiling:** this API does **not** supply **`Nonempty (HFinal γ)`** / native summit witnesses — only 𝒞 lawfulness
   and the master theorem on the pullback row. Native Layer A packaging remains **frontier** (see AF-1 / IC Stage D).
@@ -42,6 +43,11 @@
   **`indexedPhantomCertificateOps_pullbackAlongDom_congr_dom`**. Note **`SPEC_032_PI1`**.
 
   **Phase D v7 — section-aware pack:** **`nemsSummitSectionAware_pack_isPullback_bridge_v5_forgetfulOnCarrier`** (+ variants). Note **`SPEC_032_SA1`**.
+  **SPEC_035 Program 1 / S1a — cleaving:** **`compareLiftAccountAlong_comp`** / **`pullbackAlongCompare_comp`** + **`CertifiedFrontierRepresentation.comp`**
+  when an **inner** host row is **definitionally** the 𝒞-pullback of an **outer** host along **`outer.π`**.
+  **SPEC_035 Q3 / S5 — parallel packaging:** **`pullbackDisplay_with_host_summitFE3`** (**native** RawS1 from display **∧** expanded
+  **Stage C** joint law on the **host** — defeq to **`summitFE3_joint_semantic_law`** **`repr.certified.toSummitFE3`**) — **not** a
+  collapse; **named:** **`pullbackDisplay_with_host_summitFE3_corpus_nems_level1_id`**, **`pullbackDisplay_with_host_summitFE3_corpus_nems_level2_nv_{id,swap}`**. See **`PROGRAM1_S5_MASTER_SWIPE_TEST`**.
 -/
 
 import AdequacyArchitecture.Lawful.ComparePullback
@@ -57,6 +63,7 @@ open AdequacyArchitecture
 open AdequacyArchitecture.Instances
 open AdequacyArchitecture.Lawful
 open AdequacyArchitecture.Lawful.FinalConditionalSummit
+open AdequacyArchitecture.Portability.BranchGenericSemanticTransport
 
 variable {γ α : Type u}
 
@@ -119,6 +126,40 @@ theorem isPullbackDisplay_iff_pulledBackLawful_eq (repr : CertifiedFrontierRepre
     · simpa [pulledBackLawful, lawfulAdequacyArchitecture_pullbackAlongCompare] using hP.symm
     · simpa [pulledBackLawful, lawfulAdequacyArchitecture_pullbackAlongCompare] using hB.symm
 
+/--
+**SPEC_035 / S1a:** compose an **outer** representation (**`γ → α`**, host on **`α`**) with an **inner** (**`δ → γ`**) using
+the **same** host **`CertifiedFrontierRow α`** — compare map **`outer.π ∘ inner.π`**.
+-/
+def comp {δ : Type u} (outer : CertifiedFrontierRepresentation γ α) (inner : CertifiedFrontierRepresentation δ γ) :
+    CertifiedFrontierRepresentation δ α where
+  π := outer.π ∘ inner.π
+  certified := outer.certified
+
+/--
+**S1a cleaving:** when the **inner** certified row’s lawfulness is **exactly** the outer 𝒞-pullback
+(`inner.host = outer.pulledBackLawful`), pullback **display** along **`inner.π`** is the same predicate as display for the
+**composite** compare **`outer.π ∘ inner.π`** (by **`pullbackAlongCompare_comp`**).
+-/
+theorem isPullbackDisplay_comp_iff_of_pulledBackInner {δ : Type u} (outer : CertifiedFrontierRepresentation γ α)
+    (inner : CertifiedFrontierRepresentation δ γ) {P : AdequacyPredicates δ} {B : BurdenPredicates δ}
+    (hpull :
+      inner.certified.lawful =
+        lawfulAdequacyArchitecture_pullbackAlongCompare outer.π outer.certified.lawful) :
+    inner.IsPullbackDisplay P B ↔ (comp outer inner).IsPullbackDisplay P B := by
+  constructor
+  · rintro ⟨hP, hB⟩
+    refine And.intro ?_ ?_
+    · simpa [IsPullbackDisplay, comp, hpull, lawfulAdequacyArchitecture_pullbackAlongCompare,
+        AdequacyPredicates.pullbackAlongCompare_comp] using hP
+    · simpa [IsPullbackDisplay, comp, hpull, lawfulAdequacyArchitecture_pullbackAlongCompare,
+        BurdenPredicates.pullbackAlongCompare_comp] using hB
+  · rintro ⟨hP, hB⟩
+    refine And.intro ?_ ?_
+    · simpa [IsPullbackDisplay, comp, hpull, lawfulAdequacyArchitecture_pullbackAlongCompare,
+        AdequacyPredicates.pullbackAlongCompare_comp] using hP
+    · simpa [IsPullbackDisplay, comp, hpull, lawfulAdequacyArchitecture_pullbackAlongCompare,
+        BurdenPredicates.pullbackAlongCompare_comp] using hB
+
 end CertifiedFrontierRepresentation
 
 /--
@@ -140,6 +181,26 @@ theorem absoluteFrontierRawS1_of_valid_summitRowRepresentation {γ α : Type u}
     (h : repr.IsPullbackDisplay P B) :
     AbsoluteFrontierRawS1 P B :=
   absoluteFrontierRawS1_of_valid_certifiedFrontierRepresentation repr h
+
+/--
+**SPEC_035 Program 1 / Q3–S5 (master-swipe packaging):** under **`IsPullbackDisplay`**, the **native** **`(P,B)`** pair
+inherits **`AbsoluteFrontierRawS1`** (**S1a** / **`U_pullback`**), while the **host** certified row still satisfies the
+**Stage C** joint semantic law (**`summitFE3_joint_semantic_law`**) on **`α`** — **independently** of **`h`**.
+
+This is **not** a collapse of the two mechanisms: **`summitFE3_joint_semantic_law`** is about the **host**
+**`SummitFE3SemanticPackage`**, not a **native** **`HFinal γ`** statement. Unification (**`U*`** compression) would need
+extra morphism data (see **`PROGRAM1_S5_MASTER_SWIPE_TEST`** / **`GenericSemanticSummitLift`**).
+-/
+theorem pullbackDisplay_with_host_summitFE3 {γ α : Type u} {P : AdequacyPredicates γ} {B : BurdenPredicates γ}
+    {repr : CertifiedFrontierRepresentation γ α} (h : repr.IsPullbackDisplay P B) :
+    (AbsoluteFrontierRawS1 P B) ∧
+      (MasterStratifiedAdequacyCascadeAt repr.certified.summitTagged.toHFinal.𝔠
+          repr.certified.summitTagged.toHFinal.P repr.certified.summitTagged.toHFinal.rcp ∧
+        ForgetfulIndexedCoherent repr.certified.fe3.ops ∧
+        ForgetfulAgreementInjects repr.certified.fe3.ops) := by
+  refine And.intro ?_ ?_
+  · exact absoluteFrontierRawS1_of_valid_certifiedFrontierRepresentation repr h
+  · exact certifiedFrontierRow_summitFE3_joint repr.certified
 
 /-! ## Worked example — corpus host, **identity** compare (defeq to host **`P,B`**) -/
 
@@ -169,6 +230,20 @@ theorem absoluteFrontierRawS1_corpus_nems_level1_via_summitRowRepresentation :
     certifiedFrontierRepresentation_corpus_nems_level1_id
     certifiedFrontierRepresentation_corpus_nems_level1_id_isPullbackDisplay
 
+/--
+**SPEC_035 Program 1 / Q3–S5:** **`pullbackDisplay_with_host_summitFE3`** for **corpus Level-1** (**Fin 2** corridor, **vacuous-final** summit packaging) with **`π = id`**.
+
+Completes the **Level-1** parallel to **`pullbackDisplay_with_host_summitFE3_corpus_nems_level2_nv_id`** — same **host joint** pattern, **different** native **`(P,B)`** (**`corpusNemsFin2*`** vs **IC-aligned** Level-2 NV).
+-/
+theorem pullbackDisplay_with_host_summitFE3_corpus_nems_level1_id :
+    (AbsoluteFrontierRawS1 corpusNemsFin2Adequacy corpusNemsFin2Burden) ∧
+      (MasterStratifiedAdequacyCascadeAt certifiedFrontierRow_corpus_nems_level1.summitTagged.toHFinal.𝔠
+          certifiedFrontierRow_corpus_nems_level1.summitTagged.toHFinal.P
+          certifiedFrontierRow_corpus_nems_level1.summitTagged.toHFinal.rcp ∧
+        ForgetfulIndexedCoherent certifiedFrontierRow_corpus_nems_level1.fe3.ops ∧
+        ForgetfulAgreementInjects certifiedFrontierRow_corpus_nems_level1.fe3.ops) :=
+  pullbackDisplay_with_host_summitFE3 certifiedFrontierRepresentation_corpus_nems_level1_id_isPullbackDisplay
+
 /-! ### Corpus **Level 2 NV** (non-vacuous final) — identity compare, **IC CS-3 aligned** predicates -/
 
 /-- Same as Level-1 id packaging, with **`certifiedFrontierRow_corpus_nems_level2_nv`** ( **`corpusNemsFin2NvLawfulArchitecture`** ). -/
@@ -197,5 +272,66 @@ theorem absoluteFrontierRawS1_corpus_nems_level2_nv_via_summitRowRepresentation 
   absoluteFrontierRawS1_of_valid_certifiedFrontierRepresentation
     certifiedFrontierRepresentation_corpus_nems_level2_nv_id
     certifiedFrontierRepresentation_corpus_nems_level2_nv_id_isPullbackDisplay
+
+/--
+**SPEC_035 Program 1 / Q3–S5:** **`pullbackDisplay_with_host_summitFE3`** for **corpus Level-2 NV** with **`π = id`**
+(**baseline** beside **`pullbackDisplay_with_host_summitFE3_corpus_nems_level2_nv_swap`**).
+-/
+theorem pullbackDisplay_with_host_summitFE3_corpus_nems_level2_nv_id :
+    (AbsoluteFrontierRawS1 icCorpusAlignedNonVacuousFinalAdequacy icCorpusAlignedBurden) ∧
+      (MasterStratifiedAdequacyCascadeAt certifiedFrontierRow_corpus_nems_level2_nv.summitTagged.toHFinal.𝔠
+          certifiedFrontierRow_corpus_nems_level2_nv.summitTagged.toHFinal.P
+          certifiedFrontierRow_corpus_nems_level2_nv.summitTagged.toHFinal.rcp ∧
+        ForgetfulIndexedCoherent certifiedFrontierRow_corpus_nems_level2_nv.fe3.ops ∧
+        ForgetfulAgreementInjects certifiedFrontierRow_corpus_nems_level2_nv.fe3.ops) :=
+  pullbackDisplay_with_host_summitFE3 certifiedFrontierRepresentation_corpus_nems_level2_nv_id_isPullbackDisplay
+
+/-! ### Corpus Level 2 NV — **fiber swap** compare (SPEC_035 Q1 / nontrivial **S1a** display) -/
+
+/-- Same certified host row; **`π = corpusStrataCarrierSwap`** (involutive, injective, **≠ `id`**). -/
+def certifiedFrontierRepresentation_corpus_nems_level2_nv_swap :
+    CertifiedFrontierRepresentation CorpusStrataCarrier CorpusStrataCarrier where
+  π := corpusStrataCarrierSwap
+  certified := certifiedFrontierRow_corpus_nems_level2_nv
+
+theorem certifiedFrontierRepresentation_corpus_nems_level2_nv_swap_hasInjectiveCompare :
+    certifiedFrontierRepresentation_corpus_nems_level2_nv_swap.HasInjectiveCompare :=
+  corpusStrataCarrierSwap_injective
+
+theorem certifiedFrontierRepresentation_corpus_nems_level2_nv_swap_isPullbackDisplay :
+    certifiedFrontierRepresentation_corpus_nems_level2_nv_swap.IsPullbackDisplay
+      icCorpusAlignedNonVacuousFinalAdequacy icCorpusAlignedBurden :=
+  And.intro
+    (by
+      dsimp only [certifiedFrontierRepresentation_corpus_nems_level2_nv_swap,
+        certifiedFrontierRow_corpus_nems_level2_nv, CertifiedFrontierRepresentation.IsPullbackDisplay,
+        icCorpusAlignedNonVacuousFinalAdequacy, corpusNemsFin2NvLawfulArchitecture]
+      exact corpusNemsFin2NonVacuousFinalAdequacy_pullbackAlong_corpusStrataCarrierSwap.symm)
+    (by
+      dsimp only [certifiedFrontierRepresentation_corpus_nems_level2_nv_swap,
+        certifiedFrontierRow_corpus_nems_level2_nv, CertifiedFrontierRepresentation.IsPullbackDisplay,
+        icCorpusAlignedBurden, corpusNemsFin2NvLawfulArchitecture]
+      exact corpusNemsFin2Burden_pullbackAlong_corpusStrataCarrierSwap.symm)
+
+theorem absoluteFrontierRawS1_corpus_nems_level2_nv_via_summitRowRepresentation_swap :
+    AbsoluteFrontierRawS1 icCorpusAlignedNonVacuousFinalAdequacy icCorpusAlignedBurden :=
+  absoluteFrontierRawS1_of_valid_certifiedFrontierRepresentation
+    certifiedFrontierRepresentation_corpus_nems_level2_nv_swap
+    certifiedFrontierRepresentation_corpus_nems_level2_nv_swap_isPullbackDisplay
+
+/--
+**SPEC_035 Program 1 / Q3–S5:** **`pullbackDisplay_with_host_summitFE3`** for **corpus Level-2 NV** with **nontrivial** **`π`**
+(**`corpusStrataCarrierSwap`**) — same **host** **`certifiedFrontierRow_corpus_nems_level2_nv`** and **joint** content as the **`id`**
+corridor, but **native** display is **not** **`π = id`**. **Parallel** (**S1a** ∧ **host S5-shaped** Stage-C law), **not** collapse of **S5**
+to **`U_pullback`** alone.
+-/
+theorem pullbackDisplay_with_host_summitFE3_corpus_nems_level2_nv_swap :
+    (AbsoluteFrontierRawS1 icCorpusAlignedNonVacuousFinalAdequacy icCorpusAlignedBurden) ∧
+      (MasterStratifiedAdequacyCascadeAt certifiedFrontierRow_corpus_nems_level2_nv.summitTagged.toHFinal.𝔠
+          certifiedFrontierRow_corpus_nems_level2_nv.summitTagged.toHFinal.P
+          certifiedFrontierRow_corpus_nems_level2_nv.summitTagged.toHFinal.rcp ∧
+        ForgetfulIndexedCoherent certifiedFrontierRow_corpus_nems_level2_nv.fe3.ops ∧
+        ForgetfulAgreementInjects certifiedFrontierRow_corpus_nems_level2_nv.fe3.ops) :=
+  pullbackDisplay_with_host_summitFE3 certifiedFrontierRepresentation_corpus_nems_level2_nv_swap_isPullbackDisplay
 
 end AdequacyArchitecture.Portability

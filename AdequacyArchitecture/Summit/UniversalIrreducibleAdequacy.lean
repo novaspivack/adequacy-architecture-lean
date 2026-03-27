@@ -3,7 +3,7 @@
 
   **Theorem:** `AdequacyArchitecture.Lawful.universal_irreducible_adequacy_lawful`.
   **Earned instances:** `AdequacyArchitecture.Toy.toy_universal_irreducible_adequacy`; summit/corpus ladder
-  `Portability/AbsoluteFrontierEarnedToy.lean` (`fe4_earned_*`, ladder **A–F** incl. **`SPEC_031_ZK9`** pullback rung); NEMS Rows 1–2
+  `Portability/AbsoluteFrontierEarnedToy.lean` (`fe4_earned_*`, ladder **A–F** incl. **`SPEC_031_ZK9`** pullback rung + **`fe4_earned_absoluteFrontierRawS1_ic_native_compression_cs3_pullback_via_rl9_gate`** / **`fe4_earned_ic_native_compression_cs3_pullback_rungF_proof_irrel`** — **SPEC_033_RL9** representation gate); NEMS Rows 1–2
   `corpusNemsFin2_universal_irreducible_adequacy` (`Instances/NEMSBridgeCoreRecord.lean`).
   **Over 𝒞 (abbrev + re-export):** `AdequacyArchitecture.Summit.SummitS1AtLawful`, `summitS1_at_lawful` (`Summit/SummitOverClass.lean`; SPEC_012).
   **SPEC_030 Stage B minimal gate:** `Portability/CertifiedFrontierRow.lean` — **`S1LawfulFrontierRow`** + **`absoluteFrontierRawS1_of_s1LawfulFrontierRow`** (**defeq** this shape). **SPEC_030 B+ counterexample:** `Portability/S1ShapeNecessityCounterexample.lean` — same **def** can fail **without** 𝒞.   **SPEC_031_ZK9 Stage A:** **`icNativeCompression_cs3_pullback_universal_irreducible`** — **native** IC compression carrier **via** compare pullback (not corpus-named **`P,B`** literally).

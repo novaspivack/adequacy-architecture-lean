@@ -10,6 +10,8 @@
     `toyBurden` (e.g. `sel` is globally true on `relocDemoBurden`);
   * **Level 2** / **IC CS-3 aligned** `P_IC`, `B_IC` (`icCorpusAligned*`) — non-vacuous **final** adequacy, same `B`.
   * **Rung F — SPEC_031_ZK9:** **NV** corpus row **pulled back** to **`icNemsSpineCompressionCarrier`** (native lawful `P,B`).
+  * **Rung F — alternate cite — SPEC_033_RL9:** same **`P,B`** and conclusion via **`CertifiedSummitRowRepresentation`** pullback display
+    (**`icCs3_pullback_certifiedSummitRowRepr`**) — parallel entry for **RQ2 → MX7** packaging; **`fe4_earned_ic_native_compression_cs3_pullback_rungF_proof_irrel`** (**`proof_irrel`** vs **SPEC_031** witness).
 -/
 
 import AdequacyArchitecture.Lawful.FinalConditionalSummit
@@ -18,6 +20,7 @@ import AdequacyArchitecture.Instances.CorpusLawfulRepresentation
 import AdequacyArchitecture.Instances.ICCompareRepresentationPullback
 import AdequacyArchitecture.Instances.NEMSBridgeCoreRecord
 import AdequacyArchitecture.Instances.ICBridgeCoreRecord
+import AdequacyArchitecture.Portability.RepresentationCalculusRL9
 import AdequacyArchitecture.Toy.Fin2Model
 
 namespace AdequacyArchitecture.Portability
@@ -75,7 +78,28 @@ theorem fe4_earned_absoluteFrontierRawS1_ic_native_compression_cs3_pullback :
   icNativeCompression_absoluteFrontierRawS1_cs3_pullback
 
 /--
+**Rung F — same conclusion, SPEC_033 gate:** **`AbsoluteFrontierRawS1`** for the **IC CS-3 pullback** architecture from
+**`CertifiedSummitRowRepresentation.IsPullbackDisplay`** + **`absoluteFrontierRawS1_of_isPullbackDisplay`** (parallel to
+**`icNativeCompression_absoluteFrontierRawS1_cs3_pullback`** / **SPEC_031** 𝒞 pullback spine).
+-/
+theorem fe4_earned_absoluteFrontierRawS1_ic_native_compression_cs3_pullback_via_rl9_gate :
+    AbsoluteFrontierRawS1 icNativeCompressionLawfulArchitecture_cs3_pullback.P
+      icNativeCompressionLawfulArchitecture_cs3_pullback.B :=
+  absoluteFrontierRawS1_of_isPullbackDisplay icCs3_pullback_certifiedSummitRowRepr
+    icCs3_pullback_certifiedSummitRowRepr_isPullbackDisplay
+
+/--
+**Rung F — proof irrelevance:** the **SPEC_031** 𝒞-pullback lemma and the **SPEC_033** gate prove the **same**
+**`Prop`** — witnesses are **`proof_irrel`**-equal (either cite is **logically** interchangeable).
+-/
+theorem fe4_earned_ic_native_compression_cs3_pullback_rungF_proof_irrel :
+    fe4_earned_absoluteFrontierRawS1_ic_native_compression_cs3_pullback =
+      fe4_earned_absoluteFrontierRawS1_ic_native_compression_cs3_pullback_via_rl9_gate :=
+  proof_irrel _ _
+
+/--
 **Packaging:** Rungs **A–F** in one conjunction (single cite / `rcases` hook — still **not** global `∀P,B`).
+For **Rung F** via **SPEC_033**, cite **`fe4_earned_absoluteFrontierRawS1_ic_native_compression_cs3_pullback_via_rl9_gate`** separately.
 -/
 theorem fe4_earned_absoluteFrontierRawS1_ladder_bundle :
     AbsoluteFrontierRawS1 toyPred toyBurden ∧

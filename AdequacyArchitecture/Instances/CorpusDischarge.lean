@@ -7,6 +7,8 @@
   and discharge the parametric hypotheses with trivial / empty-domain proofs where the interface
   allows it. **`corpus_fin2_index_embedding`** maps `Fin 2` into `ℕ` for comparison with **indexed APS**
   (`APSIndexedFaithful.lean`). See `specs/COMPLETE/SPEC_013_*_CORPUS_DISCHARGE*.md` for mapping + representation.
+  **SPEC_035 Program 1:** **`corpusStrataCarrierSwap`** + **`corpusStrataCarrierSwap_involutive`** (involutive compare for **S1a** cleaving).
+  **`compareLiftAccountAlong_corpusStrataCarrierSwap`** (*pointwise* — **`NEMSBridgeCoreRecord.lean`**); **`icCs3CompCorpusNvSwap_compareLiftAccountAlong_eq_swap_compareLift`** factors **composed** compare-lift (**`ICCompareRepresentationPullback.lean`**).
 -/
 
 import AdequacyArchitecture.Core.Basic
@@ -74,5 +76,32 @@ theorem nonempty_strata_corridor_on_corpus_carrier :
     Nonempty (Middle.RealizationLayer CorpusStrataCarrier) ∧
     Nonempty (Inner.CertificationLayer CorpusStrataCarrier) :=
   ⟨nonempty_nems_corpus_outer_layer, nonempty_aps_corpus_middle_layer, nonempty_ic_corpus_certification_layer⟩
+
+/-! ### SPEC_035 — nontrivial involutive compare on **`CorpusStrataCarrier`** (`Fin 2`) -/
+
+/-- Swap the two strata indices (**0 ↔ 1**) on the shared corpus carrier. -/
+def corpusStrataCarrierSwap : CorpusStrataCarrier → CorpusStrataCarrier
+  | ⟨0, _⟩ => ⟨1, by decide⟩
+  | ⟨1, _⟩ => ⟨0, by decide⟩
+
+theorem corpusStrataCarrierSwap_involutive :
+    corpusStrataCarrierSwap ∘ corpusStrataCarrierSwap = (id : CorpusStrataCarrier → CorpusStrataCarrier) := by
+  funext i
+  match i with
+  | ⟨0, _⟩ => rfl
+  | ⟨1, _⟩ => rfl
+
+theorem corpusStrataCarrierSwap_symm {b i : CorpusStrataCarrier} (h : corpusStrataCarrierSwap b = i) :
+    b = corpusStrataCarrierSwap i :=
+  calc
+    b = corpusStrataCarrierSwap (corpusStrataCarrierSwap b) := (congrFun corpusStrataCarrierSwap_involutive b).symm
+    _ = corpusStrataCarrierSwap i := congrArg corpusStrataCarrierSwap h
+
+theorem corpusStrataCarrierSwap_injective : Function.Injective corpusStrataCarrierSwap := by
+  intro i j h
+  calc
+    i = corpusStrataCarrierSwap (corpusStrataCarrierSwap i) := (congrFun corpusStrataCarrierSwap_involutive i).symm
+    _ = corpusStrataCarrierSwap (corpusStrataCarrierSwap j) := congrArg corpusStrataCarrierSwap h
+    _ = j := congrFun corpusStrataCarrierSwap_involutive j
 
 end AdequacyArchitecture.Instances

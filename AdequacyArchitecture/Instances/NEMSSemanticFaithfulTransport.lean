@@ -11,8 +11,9 @@
 
   **Epistemic discipline (unchanged).** Do **not** add **`SemanticRemainder`** to the master bundle; cite
   **`faithful_nems_semantic_remainder_at_unit`** as a sibling (see **`SPEC_025_YG2`** § *Official composition
-  API*). **`MasterBundleCascadeCoherent`** is the optional hypothesis linking **`lawfulCascade`** to the
-  authoritative report when the bundle is not **`mkStandard`**-shaped.
+  API*). **`MasterBundleCascadeCoherent`** is an optional hypothesis tying **`lawfulCascade`** to the
+  **`summitTracked`** cascade (alternative citation paths); **every** valid bundle is **`mkStandard`**-equal anyway
+  (**`HaltingAnchoredFaithfulSummitMasterBundle.eq_mkStandard`** — **`SPEC_032_HM4_K9N`**).
 
   **Depends on:** **`NEMSSemanticFaithfulSummitMaster`**, **`NEMSSemanticReportCertificateTransport`**
   (Phase E). For certificate primitives see **`NEMSSemanticReportCertificate`**.
