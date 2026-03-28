@@ -20,7 +20,7 @@ require mathlib from git
   `../../nems-lean`, `../../infinity-compression/infinity-compression-lean`).
 -/
 require «reflexive-architecture» from git
-  "https://github.com/novaspivack/reflexive-architecture-lean.git" @ "62f78dee05d08c0535ccd48323378e626f9e858a"
+  "https://github.com/novaspivack/reflexive-architecture-lean.git" @ "1dc9b05915832f88d378bd7813db9e43dab2c019"
 
 /-
   APS recursion uniformization (`aps-recursion-program`): `IndexedAPS`, **interpolation exactness**
