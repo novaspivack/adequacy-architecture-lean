@@ -28,7 +28,7 @@ require «reflexive-architecture» from git
   and `corrected_exactness_iff` (`APSRecComp`).
 -/
 require aps_recursion_uniformization_lean from git
-  "https://github.com/novaspivack/aps-recursion-uniformization-lean.git" @ "49f4682c213646935e6dd08f0e66425b71c07f45"
+  "https://github.com/novaspivack/aps-recursion-uniformization-lean.git" @ "f5566e70b56a8c5b087625219379bd23c3ca517d"
 
 @[default_target]
 lean_lib «AdequacyArchitecture» where
