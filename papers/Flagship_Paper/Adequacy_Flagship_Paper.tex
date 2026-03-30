@@ -93,6 +93,7 @@
 \maketitle
 
 \begin{abstract}
+\raggedright
 Outer certificates---compressed witnesses, abstraction layers, quotient
 representations, transport claims, upgrade witnesses---are routinely used as
 if they defined distinct admissibility worlds.  This paper proves that, in a
@@ -113,7 +114,33 @@ The result is a strict three-level architecture:
 band.}  Every boundary is characterized by a named, machine-checked theorem.
 All proofs are in Lean~4 with 0 \texttt{sorry}; exact theorem names and modules
 are given in the companion note and appendix.
+
+\textbf{Trust boundary:} The three-level architecture is a theorem relative to the formalized certificate world and named Lean declarations; it is not an empirical claim about every deployed system without translation.
 \end{abstract}
+
+\noindent\textbf{Keywords:} outer admissibility, certificates, adequacy, Lean~4,
+layered architecture, formal verification
+
+\noindent\textbf{MSC 2020:} 03F45, 03B70, 68T27
+
+\noindent\textbf{Code/Data availability:} \texttt{adequacy-architecture-lean};
+\texttt{lake build}; \texttt{THEOREM\_INVENTORY.md} and \texttt{MANIFEST.md} at repository root;
+companion \texttt{Adequacy\_Theorem\_Companion.tex} for concise theorem-name routing.
+
+\section{Premises, disagreement coordinates, and trust boundary}\label{sec:premises-adequacy-flagship}
+\begin{keybox}[title=Where disagreement can (and cannot) live]
+\textbf{Formal spine.}
+Outer gate, second layer, and residual-band claims reference the machine-checked stack named in \texttt{THEOREM\_INVENTORY.md}, not motivational prose alone.
+
+\medskip
+\textbf{Premise coordinates (for external readers).}
+\begin{itemize}[leftmargin=2em]
+\item \textbf{Certificate-world grammar.} Universality is relative to the disciplined outer-normal-form grammar formalized in Lean.
+  \emph{Logical effect:} Extending the grammar is a new mathematical task, not silent refutation of the original gate theorem.
+\item \textbf{Deployment bridge.} Mapping institutional ``certificates'' to formal predicates requires honest modeling; the paper does not certify informal APIs without that bridge.
+  \emph{Logical effect:} Skepticism about one application model leaves the core gate theorem intact.
+\end{itemize}
+\end{keybox}
 
 \tableofcontents
 
