@@ -5,7 +5,7 @@ lake-packages/
 # Editor
 .DS_Store
 
-# LaTeX (paper/ and papers/; PDFs are tracked)
+# LaTeX (paper/ and papers/; rebuild PDFs locally)
 **/paper/*.aux
 **/paper/*.fdb_latexmk
 **/paper/*.fls
@@ -13,6 +13,7 @@ lake-packages/
 **/paper/*.out
 **/paper/*.toc
 **/paper/*.synctex.gz
+**/paper/*.pdf
 **/papers/**/*.aux
 **/papers/**/*.fdb_latexmk
 **/papers/**/*.fls
@@ -20,4 +21,5 @@ lake-packages/
 **/papers/**/*.out
 **/papers/**/*.toc
 **/papers/**/*.synctex.gz
+**/papers/**/*.pdf
 **/*synctex(busy)*
