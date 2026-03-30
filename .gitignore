@@ -13,7 +13,6 @@ lake-packages/
 **/paper/*.out
 **/paper/*.toc
 **/paper/*.synctex.gz
-**/paper/*.pdf
 **/papers/**/*.aux
 **/papers/**/*.fdb_latexmk
 **/papers/**/*.fls
@@ -21,5 +20,4 @@ lake-packages/
 **/papers/**/*.out
 **/papers/**/*.toc
 **/papers/**/*.synctex.gz
-**/papers/**/*.pdf
 **/*synctex(busy)*
