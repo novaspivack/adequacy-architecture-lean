@@ -1,14 +1,16 @@
 # adequacy-architecture-lean
 
-Lean 4 + **Mathlib** for the **Adequacy Architecture** program. Layout matches `reflexive-architecture-lean`: `lakefile.lean`, `AdequacyArchitecture.lean`, `AdequacyArchitecture/`.
+Lean 4 + Mathlib library for the **Adequacy Architecture** program — outer admissibility, unified certificate-world structure, and the three-level architecture theorem.
 
-**You need Mathlib, but you should not compile Mathlib from source** on your machine. After `lake update`, always run **`lake exe cache get`** to download pre-built artifacts, then `lake build`. See **`../docs/optional_mathlib.md`**.
+## What it proves
+
+Heterogeneous outer certificate forms (compressed witnesses, abstraction layers, quotient representations, transport claims, upgrade witnesses) collapse to one unified admissibility gate in a disciplined certificate world. Above the gate, a richer second layer is canonically forced without new hypotheses. Stronger branch content sits above both as a partially reconstructible but irreducibly richer residual band. The strict three-level architecture is witnessed by named, machine-checked theorems.
 
 ## Build
 
 ```bash
 lake update
-lake exe cache get
+lake exe cache get   # pre-built Mathlib .olean files (strongly recommended)
 lake build
 ```
 
@@ -16,18 +18,15 @@ lake build
 
 ## Root import
 
-`AdequacyArchitecture.lean` imports the initial module surface (`Basic`).
+`AdequacyArchitecture.lean` imports the full module surface.
 
-## Papers
+## Documentation
 
-See `paper/build_papers.sh` and `paper/Program_Notes.tex` (placeholder).
+- **[MANIFEST.md](MANIFEST.md)** — module layout, entry-point names, last verified build
+- **[ARTIFACT.md](ARTIFACT.md)** — what the library proves, proof policy, reproduction steps
+- **[THEOREM_INVENTORY.md](THEOREM_INVENTORY.md)** — sequenced spine of named definitions and theorems
 
-## Manifest, artifact, inventory
-
-- **`MANIFEST.md`** — module layout, entry-point names, last verified build.  
-- **`ARTIFACT.md`** — what the library proves, proof policy, reproduction.  
-- **`THEOREM_INVENTORY.md`** — sequenced spine of named defs/theorems (paper/spec crosswalk).  
-- Paper-prep mirror: `specs/NOTES/ADEQUACY_THEOREM_INVENTORY_LEAN_PAPER_PREP.md` → same file.
+The companion papers are published on Zenodo — see [novaspivack.com/research](https://www.novaspivack.com/research).
 <!-- NOVA_ZPO_ZENODO_SOFTWARE_BEGIN -->
 **Archival software (Zenodo):** https://doi.org/10.5281/zenodo.19429258
 <!-- NOVA_ZPO_ZENODO_SOFTWARE_END -->
