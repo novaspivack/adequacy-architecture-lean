@@ -28,3 +28,6 @@ See `paper/build_papers.sh` and `paper/Program_Notes.tex` (placeholder).
 - **`ARTIFACT.md`** — what the library proves, proof policy, reproduction.  
 - **`THEOREM_INVENTORY.md`** — sequenced spine of named defs/theorems (paper/spec crosswalk).  
 - Paper-prep mirror: `specs/NOTES/ADEQUACY_THEOREM_INVENTORY_LEAN_PAPER_PREP.md` → same file.
+<!-- NOVA_ZPO_ZENODO_SOFTWARE_BEGIN -->
+**Archival software (Zenodo):** https://doi.org/10.5281/zenodo.19429258
+<!-- NOVA_ZPO_ZENODO_SOFTWARE_END -->
