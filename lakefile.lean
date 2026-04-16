@@ -15,20 +15,19 @@ require mathlib from git
   "https://github.com/leanprover-community/mathlib4.git" @ "v4.29.0-rc6"
 
 /-
-  Strata (`reflexive-architecture-lean`): same Mathlib pin; pulls in `nems-lean` +
-  `infinity-compression-lean` via *its* lakefile (paths relative to that repo:
-  `../../nems-lean`, `../../infinity-compression/infinity-compression-lean`).
+  Strata (`reflexive-architecture-lean`): same Mathlib pin; transitively depends on
+  `nems-lean` and `infinity-compression-lean` as declared in that package’s lakefile.
 -/
 require «reflexive-architecture» from git
-  "https://github.com/novaspivack/reflexive-architecture-lean.git" @ "1dc9b05915832f88d378bd7813db9e43dab2c019"
+  "https://github.com/novaspivack/reflexive-architecture-lean.git" @ "50a28eb26eb4f4d917d194a9b2e7ccc3764f0787"
 
 /-
-  APS recursion uniformization (`aps-recursion-program`): `IndexedAPS`, **interpolation exactness**
+  APS recursion uniformization (`aps-recursion-uniformization-lean`): `IndexedAPS`, **interpolation exactness**
   `HasICompIndexed ↔ HasFiniteTracking ∧ HasGluing` (`APSUniformization.Synthesis.aps_interpolation_exactness`),
   and `corrected_exactness_iff` (`APSRecComp`).
 -/
 require aps_recursion_uniformization_lean from git
-  "https://github.com/novaspivack/aps-recursion-uniformization-lean.git" @ "f5566e70b56a8c5b087625219379bd23c3ca517d"
+  "https://github.com/novaspivack/aps-recursion-uniformization-lean.git" @ "b96ab3631081364074aa87d588735e60a35ee2ea"
 
 @[default_target]
 lean_lib «AdequacyArchitecture» where
