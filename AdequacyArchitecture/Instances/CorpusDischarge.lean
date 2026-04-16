@@ -6,8 +6,8 @@
   those corpora supply proofs **into** the parametric `From*` constructors; here we fix **`S = Fin 2`**
   and discharge the parametric hypotheses with trivial / empty-domain proofs where the interface
   allows it. **`corpus_fin2_index_embedding`** maps `Fin 2` into `ℕ` for comparison with **indexed APS**
-  (`APSIndexedFaithful.lean`). See `specs/COMPLETE/SPEC_013_*_CORPUS_DISCHARGE*.md` for mapping + representation.
-  **SPEC_035 Program 1:** **`corpusStrataCarrierSwap`** + **`corpusStrataCarrierSwap_involutive`** (involutive compare for **S1a** cleaving).
+  (`APSIndexedFaithful.lean`).
+  **Program 1 packaging:** **`corpusStrataCarrierSwap`** + **`corpusStrataCarrierSwap_involutive`** (involutive compare for **S1a** cleaving).
   **`compareLiftAccountAlong_corpusStrataCarrierSwap`** (*pointwise* — **`NEMSBridgeCoreRecord.lean`**); **`icCs3CompCorpusNvSwap_compareLiftAccountAlong_eq_swap_compareLift`** factors **composed** compare-lift (**`ICCompareRepresentationPullback.lean`**).
 -/
 

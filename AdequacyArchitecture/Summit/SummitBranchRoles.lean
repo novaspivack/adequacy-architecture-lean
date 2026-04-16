@@ -1,13 +1,11 @@
 /-
-  **SPEC_026 — Phase 3 (role-aware summit contract).**
+  Phase 3 — role-aware summit contract.
 
   Minimal **named roles** for a future refactor of **`FinalConditionalSummit.HFinal`** (or parallel packaging):
   branches that enter the adequacy law via **relocation/finality** vs **composition/gluing/obstruction**.
 
   **Wiring:** use **`AdequacyArchitecture.Lawful.FinalConditionalSummit.HFinalWithBranchRole`** (same `HFinal` payload
   + role tag). Tags are metadata; **`highestReachable_summit_at`** still uses **`toHFinal`** only.
-
-  See **`specs/COMPLETE/SPEC_026_KR7_THREE_BRANCH_CLOSURE_PROGRAM.md`** (COMPLETE).
 -/
 
 namespace AdequacyArchitecture.Summit

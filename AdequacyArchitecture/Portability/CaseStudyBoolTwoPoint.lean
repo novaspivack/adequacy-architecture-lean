@@ -1,11 +1,10 @@
 /-
-  **SPEC_028_EK7** — flagship **external-style** case study: **Bool** two-point lawful model.
+  Flagship **external-style** case study: **Bool** two-point lawful model.
 
   **Not** the `Fin 2` toy module — same proof obligations, carrier `Bool` for **portability**
-  (CS / logic audience). See `specs/NOTES/EXTERNAL_CASE_STUDY_BOOL_TWO_POINT.md`.
+  (CS / logic audience).
 
-  **SPEC_029 FE-5 v2:** second **bounded** stress carrier (`Bool` **≠** shared corpus `Fin 2` packaging) —
-  see `specs/NOTES/FE5_BOOL_TWO_POINT_SCALE_CASE_STUDY.md`; earned **`AbsoluteFrontierRawS1`** slice below.
+  Second **bounded** stress carrier (`Bool` **≠** shared corpus `Fin 2` packaging); earned **`AbsoluteFrontierRawS1`** slice below.
 -/
 
 import AdequacyArchitecture.Portability.InstantiationCalculus

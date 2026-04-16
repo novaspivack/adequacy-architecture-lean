@@ -22,7 +22,7 @@ open AdequacyArchitecture.Lawful.FinalConditionalSummit
 open AdequacyArchitecture.Summit
 
 /--
-**FE-4 sharp obstruction (`specs/NOTES/RAW_FRONTIER_SHARP_TARGETS.md`):** even with **`RidgeBridgeable`**
+**FE-4 sharp obstruction:** even with **`RidgeBridgeable`**
 holding at the corpus **`𝔠₀`**, **`AbsoluteFrontierRawS1 P B`** can **fail** for **wild** `P,B` (**no** lawful /
 **𝒞** link). Missing law: **`LawfulAdequacyArchitecture` / `forces_each`** at the chosen pair — not repairable
 from **`RidgeBridgeable`** alone.

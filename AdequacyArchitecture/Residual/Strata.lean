@@ -2,7 +2,8 @@
   Phase 2 — Strata (Reflexive Architecture) residual spine.
 
   Single import hub for `ReflexiveArchitecture.Universal.Residual.*` used by
-  Adequacy bands. Verified theorem / `def` names: `specs/COMPLETE/SPEC_001_AA0_*`.
+  Adequacy bands. Verified theorem and definition names are declared in this residual spine and in
+  `Residual/CanonicalCarrier.lean`.
 
   `UniversalForgetting` pulls in `FundamentalTheorem` (paper aliases
   `vanishingCriterion`, `resolutionComplexityTheorem`, `predicateClassification`)

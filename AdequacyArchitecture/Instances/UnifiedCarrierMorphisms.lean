@@ -18,9 +18,7 @@
 
   * No definitional isomorphism `Fin 2 ≃ Framework`, no canonical `Framework → Fin 2`, no commuting diagram
     tying the **corpus toy corridor** to the **halting framework** or **IC spine** — those live on different
-    Strata type parameters by design (`SPEC_014_UC1`, `HonestyBridge.lean`).
-
-  See **`specs/COMPLETE/SPEC_014_UC1_UNIFIED_CARRIER_MORPHISM_SCOPE.md`** for obligations and frontier.
+    Strata type parameters by design (unified carrier morphism scope / `HonestyBridge.lean`).
 -/
 
 import AdequacyArchitecture.Instances.CorpusDischarge

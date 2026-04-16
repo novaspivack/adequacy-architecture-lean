@@ -31,13 +31,13 @@
   `NEMSSemanticReportCertificate.lean` (Phase D + **F** `halting_anchored_canonical_certificate_summit_agreement`),
   `NEMSSemanticReportCertificateTransport.lean` (Phase E).
 
-  **Outer frontier:** global `AbsoluteFrontier*` defs below; per-corpus gaps in `SPEC_024` branch table.
-  **Representation → Layer B (earned RawS1 only):** `Portability/SummitRowRepresentation` (**SPEC_032**) pullback display ⇒
-  **`AbsoluteFrontierRawS1` for that `(P,B)`**; `Portability/RepresentationCalculusRL9` (**SPEC_033**) packages compare rows with
+  **Outer frontier:** global `AbsoluteFrontier*` defs below; per-corpus gaps remain in the branch table above.
+  **Representation → Layer B (earned RawS1 only):** `Portability/SummitRowRepresentation` pullback display ⇒
+  **`AbsoluteFrontierRawS1` for that `(P,B)`**; `Portability/RepresentationCalculusRL9` packages compare rows with
   **`CertifiedUpgradeWitness`** and ties **FE-4** Rung **F** (**`fe4_earned_*_via_rl9_gate`**, `AbsoluteFrontierEarnedToy`) — **not** raw **`∀P,B`**.
-  **Program closure packaging (SPEC_034 — `PROGRAM_CLOSED`):** `Portability/Spec034ProgramClosureLaw` — **`M1_*`**, **`M2_obstruction_*`**, **`Step4_nativeIcHFinal_iff_spineChecklist`**; doctrine frozen in `specs/COMPLETE/SPEC_034_PC7_FINAL_PATH_TO_CLOSURE.md`.
+  **Program closure packaging (`PROGRAM_CLOSED`):** `Portability/Spec034ProgramClosureLaw` — **`M1_*`**, **`M2_obstruction_*`**, **`Step4_nativeIcHFinal_iff_spineChecklist`**.
 
-  **SPEC_026 (three-branch closure):** `HFinal.nonempty_iff` (existence checklist on a new carrier);
+  **Three-branch closure:** `HFinal.nonempty_iff` (existence checklist on a new carrier);
   **`HFinalWithBranchRole`** — tags relocation/finality vs composition/gluing without changing Layer A theorems.
 -/
 

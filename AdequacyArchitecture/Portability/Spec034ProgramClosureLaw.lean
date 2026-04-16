@@ -1,8 +1,7 @@
 /-
-  **SPEC_034_PC7 — program closure law (M1 / M2 / Step 4 Lean packaging).**
+  Program closure law (M1 / M2 / Step 4 Lean packaging).
 
-  Canonical **cite surface** for the termination doctrine in
-  `specs/COMPLETE/SPEC_034_PC7_FINAL_PATH_TO_CLOSURE.md` (**`PROGRAM_CLOSED`**).
+  Canonical packaging for the termination doctrine summarized as **`PROGRAM_CLOSED`** below.
 
   * **M1 (positive):** certified structural data (frontier row, compare-pullback representation, or FE-4 ladder) ⇒
     **`AbsoluteFrontierRawS1`** for the relevant **`(P,B)`** — **not** unconstrained **`∀P,B`**.

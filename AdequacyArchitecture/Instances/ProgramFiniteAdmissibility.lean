@@ -22,9 +22,7 @@
 
   **Flagship package (NQ10):** **`program1FiniteGAdm_implies_exists_absoluteFrontierRawS1`** (+ **`…_ofWitness`**) — **canonical** consequence statement.
 
-  **Work queue:** `specs/IN-PROCESS/SPEC_036_FA1/SPEC_036_FA1_WORK_QUEUE.md`.
-
-  **SPEC_037_MU1:** **`program1FiniteGAdm γ` ↔ `Program1AdmissibilityPullbackDisplayWitness γ`** — see **`Program1MetaUnificationMU1.lean`**.
+  **Meta-unification:** **`program1FiniteGAdm γ` ↔ `Program1AdmissibilityPullbackDisplayWitness γ`** — see **`Program1MetaUnificationMU1.lean`**.
 -/
 
 import AdequacyArchitecture.Instances.CorpusStrataCoarseQuotient
