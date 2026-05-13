@@ -1,8 +1,8 @@
 # adequacy-architecture-lean — artifact documentation
 
 **Version:** v0.2.0  
-**Lean:** leanprover/lean4:v4.29.0-rc6  
-**Mathlib:** v4.29.0-rc6 — use **`lake exe cache get`**  
+**Lean:** leanprover/lean4:v4.29.1  
+**Mathlib:** v4.29.1 — use **`lake exe cache get`**  
 **Build:** `lake build` — **0 sorry** in proof terms; **0** custom program axioms  
 **Lake deps:** Mathlib + **`reflexive-architecture`** + **`aps_recursion_uniformization_lean`** (`lakefile.lean`); **NEMS** / **infinity-compression** arrive **transitively** through **`reflexive-architecture`**. Not Mathlib-only.  
 **Workspace handoff:** `../specs/IN-PROCESS/STATUS_AND_HANDOFF.md` (canonical advisor brief). **Legacy filename:** `../specs/IN-PROCESS/MASTER_STATUS_AND_HANDOFF.md` redirects to the same document.
