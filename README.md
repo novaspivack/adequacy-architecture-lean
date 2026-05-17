@@ -46,5 +46,5 @@ lake build
 
 The companion papers are published on Zenodo — see [novaspivack.com/research](https://www.novaspivack.com/research).
 <!-- NOVA_ZPO_ZENODO_SOFTWARE_BEGIN -->
-**Archival software (Zenodo):** https://doi.org/10.5281/zenodo.19429258
+**Archival software (Zenodo):** https://doi.org/10.5281/zenodo.19430708
 <!-- NOVA_ZPO_ZENODO_SOFTWARE_END -->
